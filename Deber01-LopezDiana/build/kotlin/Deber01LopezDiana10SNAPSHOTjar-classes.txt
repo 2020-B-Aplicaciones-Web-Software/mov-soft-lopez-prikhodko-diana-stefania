@@ -1,0 +1,1 @@
+D:\GitKrak\mov-soft-lopez-prikhodko-diana-stefania\Deber01-LopezDiana\build\classes\kotlin\main\Articulo.class;D:\GitKrak\mov-soft-lopez-prikhodko-diana-stefania\Deber01-LopezDiana\build\classes\kotlin\main\MainKt.class;D:\GitKrak\mov-soft-lopez-prikhodko-diana-stefania\Deber01-LopezDiana\build\classes\kotlin\main\Papeleria.class
