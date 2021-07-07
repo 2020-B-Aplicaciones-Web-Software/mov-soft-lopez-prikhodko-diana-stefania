@@ -1,7 +1,5 @@
 import java.io.File
 import java.io.InputStream
-import java.nio.file.Files
-import java.nio.file.StandardOpenOption
 
 class Articulo (
         var idArticulo : Int,

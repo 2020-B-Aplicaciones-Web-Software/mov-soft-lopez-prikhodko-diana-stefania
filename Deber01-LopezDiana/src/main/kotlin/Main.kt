@@ -1,25 +1,9 @@
 import java.time.LocalDate
-import java.time.Month
-import java.util.*
 
 fun main () {
     var valor1 = 0
     val articuloGenerico = Articulo(0,"",0.0,0,"",null)
     val papeleriaGenerica = Papeleria(0,"","", LocalDate.now(), false, arrayListOf())
-
-/*
-    val currentDate = LocalDate.of(2016,5,15)
-    val art = Articulo(1,"loaregre",18.65,58,"norma","triple hueco")
-    var p = Papeleria(56,"a","av. 123 america", currentDate,true, null)
-   // p.visualizarPapelerías()
-   // p.crearPapelería(p)
-    p.actualizarPapeleria(p)
-  // art.actualizarProductos(12,art)
-  // art.eliminarProductos(12, 3)
-   // art.agregarProductos(128,art)
-   // p.eliminarPapelerias(123)
-  // p.agregarPapeleria(p)
-    p.visualizarPapelerías()*/
 
     while (valor1 != 9){
         println("============ Deber 01 (Papelería-Artículos) ============")

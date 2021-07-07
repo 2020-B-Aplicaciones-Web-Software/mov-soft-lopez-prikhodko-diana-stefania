@@ -3,7 +3,6 @@ import java.io.InputStream
 import java.nio.file.Files
 import java.nio.file.StandardOpenOption
 import java.time.LocalDate
-import javax.print.attribute.standard.PrinterInfo
 import kotlin.collections.ArrayList
 
 class Papeleria (
