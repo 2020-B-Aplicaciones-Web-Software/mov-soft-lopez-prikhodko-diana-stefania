@@ -6,20 +6,23 @@ import android.os.Parcelable
 class BEntrenador (
     val nombre: String?,
     val descripcion: String?,
+   // val liga: DLiga?,
 ) : Parcelable{
     constructor(parcel: Parcel) : this(
         parcel.readString(),
-        parcel.readString()
+        parcel.readString(),
+       // parcel.readParcelable(DLiga::class.java.classLoader)
     ) {
-    }
-
-    override fun toString(): String {
-        return "${nombre} - ${descripcion}"
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(nombre)
         parcel.writeString(descripcion)
+      //  parcel.writeParcelable(liga,flags)
+    }
+
+    override fun toString(): String {
+        return "${nombre} - ${descripcion}"
     }
 
     override fun describeContents(): Int {
