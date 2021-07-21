@@ -34,6 +34,7 @@ class Articulo(
         parcel.writeInt(idPapeleria)
     }
 
+    //Método toString sobreescrito para que en la lista se vea mejor
     override fun toString(): String {
         return "Nombre: ${nombreArticulo}\nPrecio: ${precioArticulo}\nCantidad: ${cantidadArticulo}\nMarca: ${marcaArticulo}\nDescripcion: ${descripcionArticulo}"
     }

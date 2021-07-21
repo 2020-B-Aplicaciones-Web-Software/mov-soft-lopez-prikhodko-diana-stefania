@@ -32,13 +32,15 @@ class MainActivity : AppCompatActivity() {
             abrirActividad(CrearPapeleria::class.java)
         }
 
-        //Llenar el ListView
+        //Llenar el ListViewy la manipulación de sus menús contextuales
         llenarListView()
-
     }
 
     fun llenarListView(){
+
+        // Obtenemos la lista de papelerías registradas
         val arreglo = baseDatos.consultarPapelerias()
+
         //Creamos el adaptador
         val adaptador = ArrayAdapter(
             this, //contexto
@@ -54,6 +56,7 @@ class MainActivity : AppCompatActivity() {
         registerForContextMenu(listView)
     }
 
+    //Abrir una Actividad sin necesidad de mandar parámetros
     fun abrirActividad(
         clase : Class<*>
     ){
@@ -64,7 +67,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intentExplicito)
     }
 
-
+    //Abrir una Actividad mandando una papelería
     fun abrirActividadConParametros(
         clase : Class<*>,
         papeleria: Papeleria
@@ -77,6 +80,7 @@ class MainActivity : AppCompatActivity() {
         startActivityForResult(intentExplicito, CODIGO_REPUESTA_INTENT_EXPLICITO)
     }
 
+    //Crear el menú contextual dentro de la pantalla
     override fun onCreateContextMenu(
         menu: ContextMenu?,
         v: View?,
@@ -88,32 +92,46 @@ class MainActivity : AppCompatActivity() {
 
         val info = menuInfo as AdapterView.AdapterContextMenuInfo
         val id = info.position
+        // Almacenar cual papelería seleccionamos
         posicionItemSelecionado = id
-        Log.i("List-View","List view ${posicionItemSelecionado}")
     }
 
+    //Dar funcionalidad a los ítems de la lista seleccionado
     override fun onContextItemSelected(item: MenuItem): Boolean {
-        return when(item?.itemId){ // el ? es para que no se caiga el aplicativo por no haber puesto el id
-            //visualizar articulos
+        return when(item?.itemId){
+            //Visualizar articulos de una papelería
             R.id.mi_visualizar -> {
+
+                // Obtener el objeto y mandarlo a la actividad de visualizar los artículos
                 val lista = baseDatos.consultarPapelerias()
                 val papeleria = lista[posicionItemSelecionado]
+
                 abrirActividadConParametros(VisualizarArticulosPorPapeleria::class.java,papeleria)
+
                 return true
             }
-            //Eliminar
+            //Eliminar papelería
             R.id.mi_borrarPapeleria -> {
+
+                //Obtener el id de la papelería a eliminar
                 val lista = baseDatos.consultarPapelerias()
                 val id = lista[posicionItemSelecionado].idPapeleria
+                //Eliminar
                 baseDatos.eliminarPapeleriaFormulario(id)
+                //Actualizar la vista
                 llenarListView()
+
                 return true
             }
-            //Actualizar
+            //Actualizar papelería
             R.id.mi_actualizarPapeleria ->{
+
+                //Obtener el objeto papelería a actualizar y mandarlo a la actividad
                 val lista = baseDatos.consultarPapelerias()
                 val papeleria = lista[posicionItemSelecionado]
+
                 abrirActividadConParametros(ActualizarPapeleria::class.java, papeleria)
+
                 return true
             }
             else -> super.onContextItemSelected(item)

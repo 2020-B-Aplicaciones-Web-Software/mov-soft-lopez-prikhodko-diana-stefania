@@ -10,7 +10,7 @@ import android.widget.*
 
 class VisualizarArticulosPorPapeleria : AppCompatActivity() {
 
-    //Variable para saber la posicion de una papelería
+    //Variable para saber la posicion de una artículo
     var posicionItemSelecionado = 0
     //Variable para el uso de la BD
     var baseDatos = ESqliteHelper(this)
@@ -25,29 +25,28 @@ class VisualizarArticulosPorPapeleria : AppCompatActivity() {
         val papeleriaIntent = intent.getParcelableExtra<Papeleria>("papeleria")
 
         //Ver el título con el nombre de la papelería
-
         val tituloTextView = findViewById<TextView>(R.id.tv_tituloMenuPapeleriaProducto)
         tituloTextView.setText(papeleriaIntent?.nombrePapeleria.toString())
 
         //Llenar List View
         llenarListView(papeleriaIntent!!.idPapeleria)
 
-        //Crear Productos
-
+        //Crear artículo en esa papelería
         val botonCrearProductos = findViewById<Button>(R.id.btn_AgregarArticulos)
         botonCrearProductos.setOnClickListener {
             abrirActividadConParametros1(CrearArticulos::class.java, papeleriaIntent)
         }
 
-        //Regresar de pantalla
+        //Regresar de pantalla de visualizar papelerías
         val botonRegresar = findViewById<Button>(R.id.btn_regresarVisualizarArticulo)
         botonRegresar.setOnClickListener {
             abrirActividad(MainActivity::class.java)
         }
-
     }
 
     fun llenarListView(idPapeleria: Int){
+
+        //Buscar artículos de la papelería seleccionada
         val arreglo = baseDatos.consultarArticulos(idPapeleria)
         //Creamos el adaptador
         val adaptador = ArrayAdapter(
@@ -63,6 +62,8 @@ class VisualizarArticulosPorPapeleria : AppCompatActivity() {
         //Entregamos la lista contextual
         registerForContextMenu(listView)
     }
+
+    //Crear el menú contextual dentro de la pantalla
     override fun onCreateContextMenu(
         menu: ContextMenu?,
         v: View?,
@@ -78,29 +79,39 @@ class VisualizarArticulosPorPapeleria : AppCompatActivity() {
 
     }
 
+    //Dar funcionalidad a los ítems de la lista seleccionado
     override fun onContextItemSelected(item: MenuItem): Boolean {
-        return when(item?.itemId){ // el ? es para que no se caiga el aplicativo por no haber puesto el id
-            //Actualizar
+        return when(item?.itemId){
+
+            //Actualizar Artículo seleccionado
             R.id.mi_actualizarArticulo -> {
 
-                // Papelería actual
+                //Papelería actual
                 val papeleriaIntent = intent.getParcelableExtra<Papeleria>("papeleria")
 
+                //Articulo seleccionado
                 val lista = baseDatos.consultarArticulos(papeleriaIntent!!.idPapeleria)
                 val producto = lista[posicionItemSelecionado]
+
+                //Envío de los 2 objetos
                 abrirActividadConParametros(ActualizarArticulo::class.java,papeleriaIntent,producto)
 
                 return true
             }
-            //Eliminar
+            //Eliminar Artículo seleccionado
             R.id.mi_borrarArticulo -> {
 
                 // Papelería actual
                 val papeleriaIntent = intent.getParcelableExtra<Papeleria>("papeleria")
 
+                //Artículo seleccionado
                 val lista = baseDatos.consultarArticulos(papeleriaIntent!!.idPapeleria)
                 val id = lista[posicionItemSelecionado].idArticulo
+
+                //Eliminar Artículo
                 baseDatos.eliminarArticuloFormulario(id)
+
+                //Actualizar la vista
                 llenarListView(papeleriaIntent.idPapeleria)
 
                 return true
@@ -108,6 +119,8 @@ class VisualizarArticulosPorPapeleria : AppCompatActivity() {
             else -> super.onContextItemSelected(item)
         }
     }
+
+    //Abrir una Actividad mandando una papelería y un artículo
     fun abrirActividadConParametros(
         clase : Class<*>,
         papeleria: Papeleria,
@@ -121,6 +134,8 @@ class VisualizarArticulosPorPapeleria : AppCompatActivity() {
         intentExplicito.putExtra("articulo", articulo)
         startActivityForResult(intentExplicito, CODIGO_REPUESTA_INTENT_EXPLICITO)
     }
+
+    //Abrir una Actividad mandando una papelería
     fun abrirActividadConParametros1(
         clase : Class<*>,
         papeleria: Papeleria
@@ -132,6 +147,8 @@ class VisualizarArticulosPorPapeleria : AppCompatActivity() {
         intentExplicito.putExtra("papeleria", papeleria)
         startActivityForResult(intentExplicito, CODIGO_REPUESTA_INTENT_EXPLICITO)
     }
+
+    //Abrir una Actividad sin necesidad de mandar parámetros
     fun abrirActividad(
         clase: Class<*>
     ){

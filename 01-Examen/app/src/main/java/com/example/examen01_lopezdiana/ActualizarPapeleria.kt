@@ -26,26 +26,26 @@ class ActualizarPapeleria : AppCompatActivity() {
             abrirActividad(MainActivity::class.java)
         }
 
-        //Datos quemados
-
+        //Obtener los datos de la papelería
         val papeleria = intent.getParcelableExtra<Papeleria>("papeleria")
 
         val id = papeleria?.idPapeleria!!.toInt()
+
+        //Obtener los EditText con la información
         var nombreEditText = findViewById<EditText>(R.id.box_nombrePapeleriaActualizar)
         var fechaCrecionEdiText = findViewById<EditText>(R.id.box_fechaPapeleriaActualizar)
         var direccionEditText = findViewById<EditText>(R.id.box_direccionPapeleriaActualizar)
         var mayoristaEditText = findViewById<CheckBox>(R.id.cb_MayoristaActualizar)
 
+        //Colocar los datos de la papelería a actualizar
         nombreEditText.setText(papeleria?.nombrePapeleria.toString())
         fechaCrecionEdiText.setText(papeleria?.fechaAperturaPapeleria.toString())
         direccionEditText.setText(papeleria?.direccionPapeleria.toString())
-
-
         if (papeleria.mayorista == true){
             mayoristaEditText.isChecked = true
         }
-        //Boton Actualizar
 
+        //Boton Actualizar
         val botonActualizar = findViewById<Button>(R.id.btn_ActualizarPapeleria)
         botonActualizar.setOnClickListener {
 
@@ -57,8 +57,10 @@ class ActualizarPapeleria : AppCompatActivity() {
 
             //Comprobar si no son nulos
             if (!nombre.isNullOrEmpty() and !direccion.isNullOrEmpty() and !fechaCreacion.isNullOrEmpty()){
-                //Crear el objeto en la bd
+
+                //Actualizar en la bd
                 val respuesta = baseDatos.actualizarPapeleriaFormulario(nombre,direccion, fechaCreacion,mayorista,id)
+
                 //Mensaje de retroalimentación
                 if (respuesta){
                     val builder = AlertDialog.Builder(this)
@@ -90,11 +92,10 @@ class ActualizarPapeleria : AppCompatActivity() {
                 dialogo.show()
                 return@setOnClickListener
             }
-
         }
-
-
     }
+
+    //Abrir la Actividad de regreso sin necesidad de mandar ningún parámetro
     fun abrirActividad(
         clase : Class<*>
     ){

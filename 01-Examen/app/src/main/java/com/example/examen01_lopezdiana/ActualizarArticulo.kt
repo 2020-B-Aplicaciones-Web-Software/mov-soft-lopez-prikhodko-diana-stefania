@@ -58,7 +58,7 @@ class ActualizarArticulo : AppCompatActivity() {
 
             if (!nombre.isNullOrEmpty() and !marca.isNullOrEmpty() and !descripcion.isNullOrEmpty() and !precio.equals("") and !cantidad.equals("")){
 
-                //Actualizar el articulo
+                //Actualizar el artículo
                 val respuesta = baseDatos.actualizarArticuloFormulario(nombre,precio,cantidad,marca,descripcion,articuloIntet.idArticulo,
                     papeleriaIntet!!.idPapeleria)
 
@@ -94,6 +94,7 @@ class ActualizarArticulo : AppCompatActivity() {
         }
     }
 
+    //Abrir una Actividad mandando una papelería
     fun abrirActividadParametro(
         clase: Class<*>,
         papeleria: Papeleria

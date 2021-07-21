@@ -11,9 +11,11 @@ import androidx.appcompat.app.AlertDialog
 
 class CrearArticulos : AppCompatActivity() {
 
+    //Envio de datos a otra Actividad
     val CODIGO_REPUESTA_INTENT_EXPLICITO = 101
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_crear_articulos)
 
@@ -43,7 +45,6 @@ class CrearArticulos : AppCompatActivity() {
             var descripcionEditText = findViewById<EditText>(R.id.box_descripcionArticuloCrear)
 
             // Obtener información
-
             val nombre = nombreEditText.text.toString()
             val precio = precioEditText.text.toString().toDouble()
             val cantidad = cantidadEditText.text.toString().toInt()
@@ -92,13 +93,11 @@ class CrearArticulos : AppCompatActivity() {
                     dialogo.show()
                     return@setOnClickListener
                 }
-
             }
-
         }
-
     }
 
+    //Abrir una Actividad mandando una papelería
     fun abrirActividadConParametros(
         clase : Class<*>,
         papeleria: Papeleria

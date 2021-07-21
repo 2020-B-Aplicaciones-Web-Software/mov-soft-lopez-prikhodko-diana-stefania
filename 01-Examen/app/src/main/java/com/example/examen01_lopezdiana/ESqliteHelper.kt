@@ -39,7 +39,8 @@ class ESqliteHelper (
                     cantidad int,
                     marca VARCHAR(50),
                     descripcion VARCHAR(100),
-                    idPapeleria INTEGER 
+                    idPapeleria INTEGER,
+                    FOREIGN KEY (idPapeleria) REFERENCES PAPELERIA(id) ON DELETE CASCADE 
                 )
             """.trimIndent()
             Log.i("bd","Creando la tabla de articulos")

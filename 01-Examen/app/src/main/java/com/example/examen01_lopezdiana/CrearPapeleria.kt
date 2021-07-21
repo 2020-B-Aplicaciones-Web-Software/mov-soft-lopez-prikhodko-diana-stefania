@@ -23,15 +23,18 @@ class CrearPapeleria : AppCompatActivity() {
         botonRegresar.setOnClickListener {
             abrirActividad(MainActivity::class.java)
         }
+
         //Crear papelería
         val botonCrear = findViewById<Button>(R.id.btn_CrearPapeleria)
         botonCrear.setOnClickListener {
 
+            //Obtener los EditText con la información
             var nombreEditText = findViewById<EditText>(R.id.box_nombrePapeleriaCrear)
             var direccionEditText = findViewById<EditText>(R.id.box_direccionCrear)
             var fechaCrecionEdiText = findViewById<EditText>(R.id.box_fechaCrear)
             var mayoristaEditText = findViewById<CheckBox>(R.id.cb_MayoristaCrear)
 
+            //Convertirla en text o su dato propio
             val nombre = nombreEditText.text.toString()
             val direccion = direccionEditText.text.toString()
             val fechaCreacion = fechaCrecionEdiText.text.toString()
@@ -40,10 +43,10 @@ class CrearPapeleria : AppCompatActivity() {
             //Comprobar si no son nulos
             if (!nombre.isNullOrEmpty() and !direccion.isNullOrEmpty() and !fechaCreacion.isNullOrEmpty()){
 
-                //Crear el objeto en la bd
+                //Crear la papelería en la bd
                 val respuesta = baseDatos.crearPapeleriaFormulario(nombre,direccion, fechaCreacion,mayorista)
 
-                //Limpiar
+                //Limpiar los EditText para seguir creando
                 nombreEditText.setText("")
                 direccionEditText.setText("")
                 fechaCrecionEdiText.setText("")
@@ -64,7 +67,6 @@ class CrearPapeleria : AppCompatActivity() {
                     dialogo.show()
                     return@setOnClickListener
                 }
-
             }else{
                 //Mensaje que llene los campos requeridos
                 val builder = AlertDialog.Builder(this)
@@ -83,6 +85,7 @@ class CrearPapeleria : AppCompatActivity() {
         }
     }
 
+    //Abrir una Actividad sin necesidad de mandar parámetros
     fun abrirActividad(
         clase : Class<*>
     ){

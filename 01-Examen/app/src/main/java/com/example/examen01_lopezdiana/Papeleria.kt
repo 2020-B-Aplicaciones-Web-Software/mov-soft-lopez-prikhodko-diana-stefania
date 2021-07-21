@@ -21,6 +21,7 @@ class Papeleria(
     ) {
     }
 
+    //Método toString sobreescrito para que en la lista se vea mejor
     override fun toString(): String {
         return "Nombre: ${nombrePapeleria}\nDireccion: ${direccionPapeleria}\nFecha Apertura: ${fechaAperturaPapeleria}\nMayorista: ${mayorista}"
     }
