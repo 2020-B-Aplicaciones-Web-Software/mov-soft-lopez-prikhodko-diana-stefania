@@ -60,6 +60,11 @@ class MainActivity : AppCompatActivity() {
                 startActivityForResult(intentConRespuestaImplicito, CODIGO_RESPUESTA_INTENT_IMPLICITO)
             }
 
+        val botonRecyclerView = findViewById<Button>(R.id.btn_ir_recycler_view)
+            .setOnClickListener{
+                abrirActividadConParametros(GRecyclerView::class.java)
+            }
+
     }
 
 
@@ -77,7 +82,7 @@ class MainActivity : AppCompatActivity() {
         intentExplicito.putExtra("apellido","Eguez")
         intentExplicito.putExtra("edad","32")
         intentExplicito.putExtra("entrenador",
-            BEntrenador("Juan", "Perez")
+            BEntrenador("Juan", "Perez",DLiga("Ana","Liga ana"))
             )
         startActivityForResult(intentExplicito, CODIGO_REPUESTA_INTENT_EXPLICITO)
     }

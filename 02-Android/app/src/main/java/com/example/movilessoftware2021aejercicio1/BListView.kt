@@ -40,7 +40,7 @@ class BListView : AppCompatActivity() {
         val botonListView = findViewById<Button>(R.id.btn_list_view_anadir)
         botonListView
             .setOnClickListener{
-                anadirItemsAlListView(BEntrenador("Ana","asd@a.com"),
+                anadirItemsAlListView(BEntrenador("Ana","asd@a.com",DLiga("Ana","Liga ana")),
                     arregloNumero, adaptador)
             }
 
