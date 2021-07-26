@@ -148,7 +148,7 @@ class ESqliteHelper (
             if (mayorista == true){
                 valoresActualizar.put("mayorista",1)
             }else{
-                valoresActualizar.put("mayorista",2)
+                valoresActualizar.put("mayorista",0)
             }
 
             val resultadoActualizacion = conexionEscritura
