@@ -121,8 +121,8 @@ class MainActivity : AppCompatActivity() {
 
                 //Actualizar la vista
                 val builder = AlertDialog.Builder(this)
-                builder.setTitle("Creación Exitosa")
-                builder.setMessage("Se ha creado un artículo de manera existosa")
+                builder.setTitle("Eliminación de papelería")
+                builder.setMessage("¿Esta seguro de eliminar esta papelería?")
                 builder.setPositiveButton(
                     "Si",
                     DialogInterface.OnClickListener{ dialog, which ->
@@ -139,8 +139,7 @@ class MainActivity : AppCompatActivity() {
                 )
                 val dialogo = builder.create()
                 dialogo.show()
-
-
+                
                 return true
             }
             //Actualizar papelería
