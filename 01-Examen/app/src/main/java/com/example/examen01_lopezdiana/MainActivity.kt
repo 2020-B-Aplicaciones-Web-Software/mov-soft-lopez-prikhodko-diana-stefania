@@ -1,5 +1,6 @@
 package com.example.examen01_lopezdiana
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +12,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
+import androidx.appcompat.app.AlertDialog
 
 class MainActivity : AppCompatActivity() {
 
@@ -116,10 +118,28 @@ class MainActivity : AppCompatActivity() {
                 //Obtener el id de la papelería a eliminar
                 val lista = baseDatos.consultarPapelerias()
                 val id = lista[posicionItemSelecionado].idPapeleria
-                //Eliminar
-                baseDatos.eliminarPapeleriaFormulario(id)
+
                 //Actualizar la vista
-                llenarListView()
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Creación Exitosa")
+                builder.setMessage("Se ha creado un artículo de manera existosa")
+                builder.setPositiveButton(
+                    "Si",
+                    DialogInterface.OnClickListener{ dialog, which ->
+                        //Eliminar
+                        baseDatos.eliminarPapeleriaFormulario(id)
+                        llenarListView()
+                    }
+                )
+                builder.setNegativeButton(
+                    "No",
+                    DialogInterface.OnClickListener{dialog, which ->
+                        Log.i("Creacion", "No se eliminó")
+                    }
+                )
+                val dialogo = builder.create()
+                dialogo.show()
+
 
                 return true
             }

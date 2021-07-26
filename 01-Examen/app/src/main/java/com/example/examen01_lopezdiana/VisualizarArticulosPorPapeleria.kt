@@ -1,12 +1,15 @@
 package com.example.examen01_lopezdiana
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.ContextMenu
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 
 class VisualizarArticulosPorPapeleria : AppCompatActivity() {
 
@@ -108,11 +111,28 @@ class VisualizarArticulosPorPapeleria : AppCompatActivity() {
                 val lista = baseDatos.consultarArticulos(papeleriaIntent!!.idPapeleria)
                 val id = lista[posicionItemSelecionado].idArticulo
 
-                //Eliminar Artículo
-                baseDatos.eliminarArticuloFormulario(id)
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Eliminación")
+                builder.setMessage("¿Deseas eliminar el artículo?")
+                builder.setPositiveButton(
+                    "Si",
+                    DialogInterface.OnClickListener{ dialog, which ->
+                        //Eliminar Artículo
+                        baseDatos.eliminarArticuloFormulario(id)
+                        //Actualizar la vista
+                        llenarListView(papeleriaIntent.idPapeleria)
+                    }
+                )
+                builder.setNegativeButton(
+                    "No",
+                    DialogInterface.OnClickListener{ dialog, which ->
+                        Log.i("Creacion", "No se eliminó")
+                    }
+                )
+                val dialogo = builder.create()
+                dialogo.show()
 
-                //Actualizar la vista
-                llenarListView(papeleriaIntent.idPapeleria)
+
 
                 return true
             }
