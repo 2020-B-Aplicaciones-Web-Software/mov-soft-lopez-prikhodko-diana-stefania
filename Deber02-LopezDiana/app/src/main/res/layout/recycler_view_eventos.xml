@@ -6,8 +6,8 @@
     android:layout_height="match_parent">
 
     <FrameLayout
-        android:layout_width="310dp"
-        android:layout_height="325dp"
+        android:layout_width="320dp"
+        android:layout_height="345dp"
         android:background="@drawable/shadowhite"
         android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,7 +22,7 @@
 
             <TextView
                 android:id="@+id/txt_titulo"
-                android:layout_width="280dp"
+                android:layout_width="290dp"
                 android:layout_height="43dp"
                 android:elevation="10dp"
                 android:text="Titulo"
@@ -38,7 +38,7 @@
 
             <Button
                 android:id="@+id/btn_meInteresa"
-                android:layout_width="210dp"
+                android:layout_width="220dp"
                 android:layout_height="40dp"
                 android:background="@drawable/shadowgraybutton"
                 android:text="     Me interesa"
@@ -57,7 +57,7 @@
                 android:id="@+id/txt_autor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:width="280dp"
+                android:width="290dp"
                 android:elevation="10dp"
                 android:text="Autor"
                 android:textColor="@color/graytext"
@@ -72,7 +72,7 @@
                 android:id="@+id/txt_fecha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:width="280dp"
+                android:width="290dp"
                 android:elevation="10dp"
                 android:text="Fecha"
                 android:textAlignment="viewStart"
@@ -104,13 +104,14 @@
 
             <ImageView
                 android:id="@+id/img_fotoEvento"
-                android:layout_width="310dp"
-                android:layout_height="170dp"
+                android:layout_width="321dp"
+                android:layout_height="169dp"
                 android:elevation="10dp"
                 android:scaleType="fitXY"
                 android:scaleY="0.995"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.6"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"

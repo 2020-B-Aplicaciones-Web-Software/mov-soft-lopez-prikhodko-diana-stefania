@@ -33,7 +33,7 @@ class AdaptadorEventos(
         val itemView = LayoutInflater
             .from(parent.context)
             .inflate(
-                R.layout.recycler_view_eventos_grande,
+                R.layout.recycler_view_eventos,
                 parent,
                 false
             )
