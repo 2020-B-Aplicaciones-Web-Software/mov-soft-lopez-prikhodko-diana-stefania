@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "227284957551",
+    "project_id": "movsoft-2021a-dianalopez",
+    "storage_bucket": "movsoft-2021a-dianalopez.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:227284957551:android:7c65e472c2e7e82d73d09a",
+        "android_client_info": {
+          "package_name": "com.example.firebaseuno"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "227284957551-crn6ku1pv6nob6fh64etvv7r69lsjont.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9jEC7XJi-3xO_FQ5vecobLCTtUMHzles"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "227284957551-crn6ku1pv6nob6fh64etvv7r69lsjont.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
