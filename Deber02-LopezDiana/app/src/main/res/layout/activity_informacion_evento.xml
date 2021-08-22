@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".InformacionEvento">
+
+    <ImageView
+        android:id="@+id/img_interes"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        android:tint="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_MeinteresaInfo"
+        app:layout_constraintEnd_toEndOf="@+id/txt_MeinteresaInfo"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="@+id/txt_MeinteresaInfo"
+        app:layout_constraintTop_toTopOf="@+id/txt_MeinteresaInfo"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@android:drawable/btn_star" />
+
+    <ImageView
+        android:id="@+id/img_asistir"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_AsistireInfo"
+        app:layout_constraintEnd_toEndOf="@+id/btn_AsistireInfo"
+        app:layout_constraintHorizontal_bias="0.061"
+        app:layout_constraintStart_toStartOf="@+id/btn_AsistireInfo"
+        app:layout_constraintTop_toTopOf="@+id/btn_AsistireInfo"
+        app:srcCompat="@drawable/asistir" />
+
+    <ImageView
+        android:id="@+id/img_regresar"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:elevation="10dp"
+        android:scaleType="fitXY"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.041"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022"
+        app:srcCompat="@drawable/abc_vector_test" />
+
+    <ImageView
+        android:id="@+id/img_FotoEventoInfo"
+        android:layout_width="411dp"
+        android:layout_height="215dp"
+        android:background="#2C2C2C"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/sym_def_app_icon" />
+
+    <TextView
+        android:id="@+id/txt_FechaEventoInfo"
+        android:layout_width="360dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="8dp"
+        android:text="Fecha"
+        android:textColor="@color/graytext"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.411"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_FotoEventoInfo" />
+
+    <TextView
+        android:id="@+id/txt_TituloEventoInfo"
+        android:layout_width="360dp"
+        android:layout_height="50dp"
+        android:text="Título"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.404"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_FechaEventoInfo" />
+
+    <TextView
+        android:id="@+id/txt_Gratuito"
+        android:layout_width="360dp"
+        android:layout_height="25dp"
+        android:text="Gratis · Evento Online"
+        android:textColor="@color/graytext"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.411"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_TituloEventoInfo" />
+
+    <TextView
+        android:id="@+id/txt_Infoextra"
+        android:layout_width="280dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="55dp"
+        android:text="Cualquiera puede encontrar este evento y unirse a la reunión"
+        android:textColor="@color/graytext"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_CompartirPermiso" />
+
+    <Button
+        android:id="@+id/btn_AsistireInfo"
+        android:layout_width="155dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/shadowdarkblue"
+        android:text="        Asistiré"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toStartOf="@+id/txt_MeinteresaInfo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Gratuito"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/txt_MeinteresaInfo"
+        android:layout_width="120dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="188dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/shadowgraybutton"
+        android:text="    Me inte..."
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Gratuito"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/txt_Mas"
+        android:layout_width="57dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="324dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/shadowgraybutton"
+        android:text="···"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Gratuito"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/txt_SegIntCompInfo"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="55dp"
+        android:text="Seguidores, interesados y compartidos"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_MeinteresaInfo" />
+
+    <TextView
+        android:id="@+id/txt_AutorEventoInfo"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="55dp"
+        android:text="Autor"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_SegIntCompInfo" />
+
+    <TextView
+        android:id="@+id/txt_GratisEventoInfo"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="55dp"
+        android:text="Público · Cualquiera dentro y fuera de Facebook"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_EventoOnlineInfo" />
+
+    <TextView
+        android:id="@+id/txt_CompartirPermiso"
+        android:layout_width="280dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="55dp"
+        android:text="Cualquiera puede compartir el enlace"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_GratisEventoInfo" />
+
+    <TextView
+        android:id="@+id/txt_EventoOnlineInfo"
+        android:layout_width="280dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="55dp"
+        android:text="Evento online"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_AutorEventoInfo" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/txt_SegIntCompInfo"
+        app:layout_constraintHorizontal_bias="0.346"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_AsistireInfo"
+        app:srcCompat="@drawable/personas" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/txt_AutorEventoInfo"
+        app:layout_constraintHorizontal_bias="0.595"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView8"
+        app:srcCompat="@drawable/duenio" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/txt_EventoOnlineInfo"
+        app:layout_constraintHorizontal_bias="0.595"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9"
+        app:srcCompat="@drawable/online" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toStartOf="@+id/txt_GratisEventoInfo"
+        app:layout_constraintHorizontal_bias="0.595"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView10"
+        app:srcCompat="@drawable/publico" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/txt_CompartirPermiso"
+        app:layout_constraintHorizontal_bias="0.595"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView11"
+        app:srcCompat="@drawable/compartirlink" />
+</androidx.constraintlayout.widget.ConstraintLayout>

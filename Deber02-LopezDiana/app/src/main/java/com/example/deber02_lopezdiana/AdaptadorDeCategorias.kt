@@ -7,11 +7,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class AdaptadorDeListasDeEventos(
+class AdaptadorDeCategorias(
     private val contexto: MainActivity,
     private val lista: List<ListasEventos>,
     private val recyclerView: RecyclerView,
-) : RecyclerView.Adapter<AdaptadorDeListasDeEventos.MyViewHolder>() {
+) : RecyclerView.Adapter<AdaptadorDeCategorias.MyViewHolder>() {
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tituloDeListaTextView : TextView
         val descripcionListaTextView : TextView
@@ -23,18 +23,18 @@ class AdaptadorDeListasDeEventos(
             descripcionListaTextView = view.findViewById(R.id.txt_descripcion)
         }
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdaptadorDeListasDeEventos.MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdaptadorDeCategorias.MyViewHolder {
         val itemView = LayoutInflater
             .from(parent.context)
             .inflate(
-                R.layout.listas_eventos,
+                R.layout.recycler_view_categorias,
                 parent,
                 false
             )
         return  MyViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: AdaptadorDeListasDeEventos.MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: AdaptadorDeCategorias.MyViewHolder, position: Int) {
         val listaE = lista[position]
         holder.tituloDeListaTextView.text = listaE.nombreLista
         holder.descripcionListaTextView.text = listaE.descripcion

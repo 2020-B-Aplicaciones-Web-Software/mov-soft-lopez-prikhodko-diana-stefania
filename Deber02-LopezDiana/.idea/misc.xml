@@ -10,12 +10,16 @@
         <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/Deber02-LopezDiana/app/src/main/res/drawable/shadowWhite.xml" value="0.2703125" />
         <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/Deber02-LopezDiana/app/src/main/res/drawable/shadowblue.xml" value="0.10740740740740741" />
         <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/Deber02-LopezDiana/app/src/main/res/drawable/shadowcirclebutton.xml" value="0.1453125" />
+        <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/Deber02-LopezDiana/app/src/main/res/drawable/shadowdarkblue.xml" value="0.13333333333333333" />
         <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/Deber02-LopezDiana/app/src/main/res/drawable/shadowgray.xml" value="0.2703125" />
         <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/Deber02-LopezDiana/app/src/main/res/drawable/shadowgraybutton.xml" value="0.1453125" />
         <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/Deber02-LopezDiana/app/src/main/res/drawable/shadowhite.xml" value="0.14635416666666667" />
         <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/Deber02-LopezDiana/app/src/main/res/drawable/shadowwhite.xml" value="0.2703125" />
+        <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/Deber02-LopezDiana/app/src/main/res/layout/activity_informacion_evento.xml" value="0.536" />
         <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/Deber02-LopezDiana/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/Deber02-LopezDiana/app/src/main/res/layout/listas_eventos.xml" value="0.264" />
+        <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/Deber02-LopezDiana/app/src/main/res/layout/recycler_view_categorias.xml" value="0.24230072463768115" />
+        <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/Deber02-LopezDiana/app/src/main/res/layout/recycler_view_eventos.xml" value="0.22010869565217392" />
         <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/Deber02-LopezDiana/app/src/main/res/layout/recycler_view_eventos_grande.xml" value="0.4" />
         <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/Deber02-LopezDiana/app/src/main/res/mipmap-anydpi-v26/ic_arrow_left.xml" value="0.2703125" />
         <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/Deber02-LopezDiana/app/src/main/res/mipmap-anydpi-v26/ic_arrow_left_round.xml" value="0.14635416666666667" />

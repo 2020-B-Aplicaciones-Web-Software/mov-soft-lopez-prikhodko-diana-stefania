@@ -1,11 +1,14 @@
 package com.example.deber02_lopezdiana
 
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.RecyclerView
 
 class AdaptadorEventos(
@@ -29,6 +32,15 @@ class AdaptadorEventos(
         }
     }
 
+    fun abrirActividadDeEvento(evento : Evento){
+        val intentExplicito = Intent(
+            this.contexto,
+            InformacionEvento::class.java
+        )
+        intentExplicito.putExtra("Evento", evento)
+        ActivityCompat.startActivityForResult(this.contexto,intentExplicito,150, Bundle.EMPTY)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater
             .from(parent.context)
@@ -49,7 +61,9 @@ class AdaptadorEventos(
             evento.imagenEvento, "drawable", this.contexto.packageName
         )
         holder.imgEventoImageView.setImageResource(imagen)
-
+        holder.imgEventoImageView.setOnClickListener {
+            abrirActividadDeEvento(evento)
+        }
     }
 
     override fun getItemCount(): Int {
