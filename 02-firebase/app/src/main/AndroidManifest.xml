@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FirebaseUno">
         <activity
+            android:name=".EOrdenes"
+            android:exported="true" />
+        <activity
+            android:name=".DRestaurante"
+            android:exported="true" />
+        <activity
+            android:name=".CProducto"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
