@@ -187,18 +187,21 @@ class MainActivity : AppCompatActivity() {
         val botonSalir = findViewById<Button>(R.id.btn_salir)
         val botonProducto = findViewById<Button>(R.id.btn_producto)
         val botonRestaurante = findViewById<Button>(R.id.btn_restaurante)
+        val botonOrden = findViewById<Button>(R.id.btn_ordenes)
         if(BAuthUsuario.usuario != null){
             tvBienvenida.text = "Bienvenido ${BAuthUsuario.usuario?.email}"
             botonLogin.visibility = View.INVISIBLE
             botonSalir.visibility = View.VISIBLE
             botonProducto.visibility = View.VISIBLE
             botonRestaurante.visibility = View.VISIBLE
+            botonOrden.visibility = View.VISIBLE
         }else{
             tvBienvenida.text = "Ingresa al aplicativo"
             botonLogin.visibility = View.VISIBLE
             botonSalir.visibility = View.INVISIBLE
             botonProducto.visibility = View.INVISIBLE
-            botonRestaurante.visibility = View.VISIBLE
+            botonRestaurante.visibility = View.INVISIBLE
+            botonOrden.visibility = View.INVISIBLE
         }
     }
 
