@@ -8,7 +8,6 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import com.example.firebaseuno.BAuthUsuario.Companion.usuario
 import com.example.firebaseuno.dto.FireStoreUsuarioDto
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
@@ -49,12 +48,25 @@ class MainActivity : AppCompatActivity() {
             irOrdenes()
         }
 
+        val botonGestionOrdenes = findViewById<Button>(R.id.btn_gestiónOrdenes)
+        botonGestionOrdenes.setOnClickListener{
+            irGestion()
+        }
+
+    }
+
+    fun irGestion(){
+        val intent = Intent(
+            this,
+            FGestionOrdenes::class.java
+        )
+        startActivity(intent)
     }
 
     fun irOrdenes(){
         val intent = Intent(
             this,
-            EOrdenes::class.java
+            ECrearOrdenes::class.java
         )
         startActivity(intent)
     }
@@ -62,7 +74,7 @@ class MainActivity : AppCompatActivity() {
     fun irRestaurante(){
         val intent = Intent(
             this,
-            DRestaurante::class.java
+            DCrearRestaurante::class.java
         )
         startActivity(intent)
     }
@@ -70,7 +82,7 @@ class MainActivity : AppCompatActivity() {
     fun irProducto(){
         val intent = Intent(
             this,
-            CProducto::class.java
+            CCrearProducto::class.java
         )
         startActivity(intent)
     }
@@ -182,26 +194,37 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setearBienvenida(){
+
         val tvBienvenida = findViewById<TextView>(R.id.tv_bienvenida)
         val botonLogin = findViewById<Button>(R.id.btn_login)
         val botonSalir = findViewById<Button>(R.id.btn_salir)
         val botonProducto = findViewById<Button>(R.id.btn_producto)
         val botonRestaurante = findViewById<Button>(R.id.btn_restaurante)
         val botonOrden = findViewById<Button>(R.id.btn_ordenes)
+        val botonGestionOrdenes = findViewById<Button>(R.id.btn_gestiónOrdenes)
+        val botonVisualizarOrdenes = findViewById<Button>(R.id.btn_VisualizarOrden)
+
         if(BAuthUsuario.usuario != null){
-            tvBienvenida.text = "Bienvenido ${BAuthUsuario.usuario?.email}"
             botonLogin.visibility = View.INVISIBLE
             botonSalir.visibility = View.VISIBLE
-            botonProducto.visibility = View.VISIBLE
-            botonRestaurante.visibility = View.VISIBLE
-            botonOrden.visibility = View.VISIBLE
+            tvBienvenida.text = "Bienvenido ${BAuthUsuario.usuario?.email}"
+            if(BAuthUsuario.usuario!!.roles[0] == "usuario"){
+                botonOrden.visibility = View.VISIBLE
+                botonVisualizarOrdenes.visibility = View.VISIBLE
+            }else{
+                botonProducto.visibility = View.VISIBLE
+                botonRestaurante.visibility = View.VISIBLE
+                botonGestionOrdenes.visibility = View.VISIBLE
+            }
         }else{
             tvBienvenida.text = "Ingresa al aplicativo"
             botonLogin.visibility = View.VISIBLE
             botonSalir.visibility = View.INVISIBLE
             botonProducto.visibility = View.INVISIBLE
             botonRestaurante.visibility = View.INVISIBLE
+            botonGestionOrdenes.visibility = View.INVISIBLE
             botonOrden.visibility = View.INVISIBLE
+            botonVisualizarOrdenes.visibility = View.INVISIBLE
         }
     }
 
