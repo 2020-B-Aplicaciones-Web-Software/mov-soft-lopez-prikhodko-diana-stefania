@@ -5,12 +5,18 @@
       <map>
         <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/02-firebase/app/src/main/res/layout/activity_cproducto.xml" value="0.264" />
         <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/02-firebase/app/src/main/res/layout/activity_drestaurante.xml" value="0.264" />
-        <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/02-firebase/app/src/main/res/layout/activity_eordenes.xml" value="0.4" />
+        <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/02-firebase/app/src/main/res/layout/activity_eordenes.xml" value="0.264" />
         <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/02-firebase/app/src/main/res/layout/activity_fgestion_ordenes.xml" value="0.25416666666666665" />
         <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/02-firebase/app/src/main/res/layout/activity_gvisualizar_ordenes.xml" value="0.25416666666666665" />
+        <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/02-firebase/app/src/main/res/layout/activity_kmaps.xml" value="0.25416666666666665" />
         <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/02-firebase/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/02-firebase/app/src/main/res/layout/fragment_maps.xml" value="0.24010416666666667" />
         <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/02-firebase/app/src/main/res/layout/rv_lista_productos.xml" value="0.4" />
         <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/02-firebase/app/src/main/res/menu/menu.xml" value="0.264" />
+        <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/02-firebase/app/src/main/res/menu/menu1.xml" value="0.25416666666666665" />
+        <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/02-firebase/app/src/main/res/menu/menuporrecibir.xml" value="0.25416666666666665" />
+        <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/02-firebase/app/src/main/res/menu/menupreparando.xml" value="0.25416666666666665" />
+        <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/02-firebase/app/src/main/res/menu/menuvacio.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

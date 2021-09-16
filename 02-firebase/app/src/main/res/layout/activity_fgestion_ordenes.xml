@@ -6,4 +6,53 @@
     android:layout_height="match_parent"
     tools:context=".FGestionOrdenes">
 
+    <ListView
+        android:id="@+id/lv_ordenesGestionar"
+        android:layout_width="350dp"
+        android:layout_height="271dp"
+        android:background="#DADADA"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/sp_filtro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sp_restauranteGestionar"
+        app:layout_constraintVertical_bias="0.556" />
+
+    <Spinner
+        android:id="@+id/sp_restauranteGestionar"
+        android:layout_width="356dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="24dp"
+        android:background="#CDBDFA"
+        app:layout_constraintBottom_toTopOf="@+id/sp_filtro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.031" />
+
+    <Spinner
+        android:id="@+id/sp_filtro"
+        android:layout_width="359dp"
+        android:layout_height="55dp"
+        android:background="#CDBDFA"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.576"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.772" />
+
+    <Button
+        android:id="@+id/btn_actualizarLVGestionar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Actualizar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sp_filtro"
+        app:layout_constraintVertical_bias="0.424" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,7 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Restaurante"
-        android:textSize="20sp"
+        android:textColor="#7C4DFF"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,6 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:text="Lista de productos ordenados:"
+        android:textColor="#7C4DFF"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/lv_productos"
         app:layout_constraintStart_toStartOf="@+id/lv_productos"
@@ -85,10 +87,10 @@
         android:text="Completar Pedido"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/lv_productos"
-        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="@+id/lv_productos"
         app:layout_constraintTop_toBottomOf="@+id/lv_productos"
-        app:layout_constraintVertical_bias="0.047" />
+        app:layout_constraintVertical_bias="0.298" />
 
     <ListView
         android:id="@+id/lv_productos"
@@ -106,6 +108,7 @@
         android:layout_height="20dp"
         android:layout_marginStart="8dp"
         android:text="Total compra:"
+        android:textColor="#7C4DFF"
         app:layout_constraintBottom_toTopOf="@+id/btn_completar_pedido"
         app:layout_constraintEnd_toStartOf="@+id/tv_totalOrden"
         app:layout_constraintHorizontal_bias="0.0"
@@ -117,6 +120,7 @@
         android:id="@+id/tv_totalOrden"
         android:layout_width="150dp"
         android:layout_height="20dp"
+        android:textColor="#7C4DFF"
         app:layout_constraintBottom_toTopOf="@+id/btn_completar_pedido"
         app:layout_constraintEnd_toEndOf="@+id/lv_productos"
         app:layout_constraintHorizontal_bias="0.616"

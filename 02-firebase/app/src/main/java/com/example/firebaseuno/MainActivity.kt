@@ -35,58 +35,45 @@ class MainActivity : AppCompatActivity() {
 
         val botonProducto = findViewById<Button>(R.id.btn_producto)
         botonProducto.setOnClickListener{
-            irProducto()
+            abrirActividad(CCrearProducto::class.java)
         }
 
         val botonDRestaurante = findViewById<Button>(R.id.btn_restaurante)
         botonDRestaurante.setOnClickListener{
-            irRestaurante()
+            abrirActividad(DCrearRestaurante::class.java)
         }
 
         val botonOrdenes = findViewById<Button>(R.id.btn_ordenes)
         botonOrdenes.setOnClickListener{
-            irOrdenes()
+            abrirActividad(ECrearOrdenes::class.java)
         }
 
         val botonGestionOrdenes = findViewById<Button>(R.id.btn_gestiónOrdenes)
         botonGestionOrdenes.setOnClickListener{
-            irGestion()
+            abrirActividad(FGestionOrdenes::class.java)
+        }
+
+        val botonMapa = findViewById<Button>(R.id.btn_ir_mapa)
+        botonMapa.setOnClickListener{
+            abrirActividad(KMapsActivity::class.java)
+        }
+
+        val botonGVisualizarOrdenes = findViewById<Button>(R.id.btn_VisualizarOrden)
+        botonGVisualizarOrdenes.setOnClickListener {
+            abrirActividad(GVisualizarOrdenes::class.java)
         }
 
     }
 
-    fun irGestion(){
-        val intent = Intent(
+    fun abrirActividad(
+        clase : Class<*>
+    ){
+        val intentExplicito = Intent(
             this,
-            FGestionOrdenes::class.java
+            clase
         )
-        startActivity(intent)
+        startActivity(intentExplicito)
     }
-
-    fun irOrdenes(){
-        val intent = Intent(
-            this,
-            ECrearOrdenes::class.java
-        )
-        startActivity(intent)
-    }
-
-    fun irRestaurante(){
-        val intent = Intent(
-            this,
-            DCrearRestaurante::class.java
-        )
-        startActivity(intent)
-    }
-
-    fun irProducto(){
-        val intent = Intent(
-            this,
-            CCrearProducto::class.java
-        )
-        startActivity(intent)
-    }
-
 
     fun llamarLoginUsuario(){
         //Llamar al proveedor que activamos

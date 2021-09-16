@@ -9,7 +9,8 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.example.firebaseuno.BAuthUsuario.Companion.usuario
+import com.example.firebaseuno.dto.HProducto
+import com.example.firebaseuno.dto.IRestaurante
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
@@ -21,13 +22,10 @@ class ECrearOrdenes : AppCompatActivity() {
 
     //Variable para saber la posicion de una articulo de la orden
     var posicionItemSelecionado = 0
-
     // Lista de los productos de la orden
     var arregloOrden = arrayListOf<HProducto>()
-
     // Total de compra
     var totalCompra = 0.00
-
     // Lista restaurantes
     var arregloRestaurantes = arrayListOf<IRestaurante>()
 
@@ -36,15 +34,15 @@ class ECrearOrdenes : AppCompatActivity() {
         setContentView(R.layout.activity_eordenes)
 
         // Llenar los Spinners
-        obtenerRestaurantes()
-        obtenerProductos()
+        cargarRestaurantes()
+        cargarProductos()
 
         // Inicializar la suma en 0
         val totalEditText = findViewById<TextView>(R.id.tv_totalOrden)
         totalEditText.text = " $ ${totalCompra}"
 
         // Crear la lista vacía
-        llenarListView()
+        cargarListView()
 
         // Añadir al hacer clic en el boton
         val botonAniadir = findViewById<Button>(R.id.btn_anadir_lista_producto)
@@ -106,7 +104,7 @@ class ECrearOrdenes : AppCompatActivity() {
                         arregloOrden = arrayListOf<HProducto>()
                         val cantidadEditText = findViewById<EditText>(R.id.et_cantidad_producto).text.clear()
                         actualizarTotal()
-                        llenarListView()
+                        cargarListView()
                     }
                 )
                 val dialogo = builder.create()
@@ -116,22 +114,17 @@ class ECrearOrdenes : AppCompatActivity() {
     }
 
     fun aniadirProducto() {
-
-        // Crear el adaptador
         val adaptador = ArrayAdapter(
-            this, //contexto
-            android.R.layout.simple_list_item_1, //Layout (visual)
-            arregloOrden //arreglo por default
+            this,
+            android.R.layout.simple_list_item_1,
+            arregloOrden
         )
-
         //Obtener Datos
         val cantidad = findViewById<EditText>(R.id.et_cantidad_producto).text.toString().toInt()
         val productoSpinner = findViewById<Spinner>(R.id.sp_producto)
         val productoText = productoSpinner.selectedItem.toString()
-
         //Comprobar que no este vacio el campo
         if (cantidad > 0) {
-
             //Realizar la consulta
             val db = Firebase.firestore
             db.collection("producto").whereEqualTo("nombre", productoText)
@@ -180,20 +173,14 @@ class ECrearOrdenes : AppCompatActivity() {
         totalEditText.text = " $ ${totalCompra}"
     }
 
-    fun llenarListView() {
-
-        //Creamos el adaptador
+    fun cargarListView() {
         val adaptador = ArrayAdapter(
-            this, //contexto
-            android.R.layout.simple_list_item_1, //Layout (visual)
-            arregloOrden //arreglo por default
+            this,
+            android.R.layout.simple_list_item_1,
+            arregloOrden
         )
-
-        //Asignamos a la lista el adaptador
         val listView = findViewById<ListView>(R.id.lv_productos)
         listView.adapter = adaptador
-
-        //Entregamos la lista contextual
         registerForContextMenu(listView)
     }
 
@@ -202,15 +189,11 @@ class ECrearOrdenes : AppCompatActivity() {
         arreglo: ArrayList<HProducto>,
         adaptador: ArrayAdapter<HProducto>
     ) {
-        // Agregaos y actualizamos
         arreglo.add(valor)
         adaptador.notifyDataSetChanged()
 
-        //Asignamos a la lista el adaptador
         val listView = findViewById<ListView>(R.id.lv_productos)
         listView.adapter = adaptador
-
-        //Entregamos la lista contextual
         registerForContextMenu(listView)
     }
 
@@ -244,7 +227,7 @@ class ECrearOrdenes : AppCompatActivity() {
                     DialogInterface.OnClickListener { dialog, which ->
                         //Eliminar Artículo
                         arregloOrden.removeAt(posicionItemSelecionado)
-                        llenarListView()
+                        cargarListView()
                         actualizarTotal()
                     }
                 )
@@ -262,7 +245,7 @@ class ECrearOrdenes : AppCompatActivity() {
         }
     }
 
-    fun obtenerRestaurantes() {
+    fun cargarRestaurantes() {
 
         val spinnerArray: MutableList<String> = ArrayList()
 
@@ -289,7 +272,7 @@ class ECrearOrdenes : AppCompatActivity() {
             }
     }
 
-    fun obtenerProductos() {
+    fun cargarProductos() {
 
         val spinnerArray: MutableList<String> = ArrayList()
 

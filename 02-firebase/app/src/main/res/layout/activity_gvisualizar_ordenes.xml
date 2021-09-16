@@ -6,4 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".GVisualizarOrdenes">
 
+    <ListView
+        android:id="@+id/lv_visualizarOrdenes"
+        android:layout_width="375dp"
+        android:layout_height="460dp"
+        android:background="#DADADA"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.103" />
+
+    <Button
+        android:id="@+id/btn_cargarMasOrdenes"
+        android:layout_width="348dp"
+        android:layout_height="60dp"
+        android:text="Cargar mas"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lv_visualizarOrdenes"
+        app:layout_constraintVertical_bias="0.273" />
 </androidx.constraintlayout.widget.ConstraintLayout>
