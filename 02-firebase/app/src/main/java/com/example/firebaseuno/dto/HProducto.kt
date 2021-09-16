@@ -1,4 +1,4 @@
-package com.example.firebaseuno
+package com.example.firebaseuno.dto
 
 class HProducto (
         val uid: String,
