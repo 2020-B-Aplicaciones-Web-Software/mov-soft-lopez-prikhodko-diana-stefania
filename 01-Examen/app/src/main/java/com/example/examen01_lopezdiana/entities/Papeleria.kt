@@ -1,36 +1,37 @@
-package com.example.examen01_lopezdiana
+package com.example.examen01_lopezdiana.entities
 
-import android.os.Build
 import android.os.Parcel
 import android.os.Parcelable
-import androidx.annotation.RequiresApi
+import java.text.SimpleDateFormat
+import java.util.*
 
 class Papeleria(
-    var idPapeleria: Int,
+    var idPapeleria: String?,
     var nombrePapeleria: String?,
     var direccionPapeleria: String?,
-    var fechaAperturaPapeleria: String?,
+    var fechaAperturaPapeleria: Date?,
     var mayorista: Boolean?
 ): Parcelable{
     constructor(parcel: Parcel) : this(
-        parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
+        parcel.readValue(Date::class.java.classLoader) as? Date,
         parcel.readValue(Boolean::class.java.classLoader) as? Boolean
     ) {
     }
 
     //Método toString sobreescrito para que en la lista se vea mejor
     override fun toString(): String {
-        return "Nombre: ${nombrePapeleria}\nDireccion: ${direccionPapeleria}\nFecha Apertura: ${fechaAperturaPapeleria}\nMayorista: ${mayorista}"
+        val format = SimpleDateFormat("dd/MM/yyyy")
+        return "Nombre: ${nombrePapeleria}\nDireccion: ${direccionPapeleria}\nFecha Apertura: ${format.format(fechaAperturaPapeleria)}\nMayorista: ${mayorista}"
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(idPapeleria)
+        parcel.writeString(idPapeleria)
         parcel.writeString(nombrePapeleria)
         parcel.writeString(direccionPapeleria)
-        parcel.writeString(fechaAperturaPapeleria)
+        parcel.writeValue(fechaAperturaPapeleria)
         parcel.writeValue(mayorista)
     }
 

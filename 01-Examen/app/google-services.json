@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "686588062498",
+    "project_id": "app-moviles-dianalopez",
+    "storage_bucket": "app-moviles-dianalopez.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:686588062498:android:cdc8725d59462334dbd37b",
+        "android_client_info": {
+          "package_name": "com.example.examen01_lopezdiana"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "686588062498-4ojc65ffsj1ccphneongolf6a4omua3e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDPIYklMXENx44gGGbr3a2qewrXGBd94M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "686588062498-4ojc65ffsj1ccphneongolf6a4omua3e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

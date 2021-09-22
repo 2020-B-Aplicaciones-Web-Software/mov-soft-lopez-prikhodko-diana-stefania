@@ -7,8 +7,17 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import com.google.firebase.Timestamp
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import java.text.SimpleDateFormat
+import java.util.*
 
 class CrearPapeleria : AppCompatActivity() {
+
+    //Referencia a la base de datos
+    val db = Firebase.firestore
+    val referenciaRestaurante= db.collection("papeleria")
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -28,61 +37,72 @@ class CrearPapeleria : AppCompatActivity() {
         val botonCrear = findViewById<Button>(R.id.btn_CrearPapeleria)
         botonCrear.setOnClickListener {
 
-            //Obtener los EditText con la información
-            var nombreEditText = findViewById<EditText>(R.id.box_nombrePapeleriaCrear)
-            var direccionEditText = findViewById<EditText>(R.id.box_direccionCrear)
-            var fechaCrecionEdiText = findViewById<EditText>(R.id.box_fechaCrear)
-            var mayoristaEditText = findViewById<CheckBox>(R.id.cb_MayoristaCrear)
+            //Obtener los EditText
+            val nombre = findViewById<EditText>(R.id.box_nombrePapeleriaCrear).text
+            val direccion = findViewById<EditText>(R.id.box_direccionCrear).text
+            val fechaCreacionText = findViewById<EditText>(R.id.box_fechaCrear).text
+            val mayorista = findViewById<CheckBox>(R.id.cb_MayoristaCrear)
 
-            //Convertirla en text o su dato propio
-            val nombre = nombreEditText.text.toString()
-            val direccion = direccionEditText.text.toString()
-            val fechaCreacion = fechaCrecionEdiText.text.toString()
-            val mayorista = mayoristaEditText.isChecked
 
             //Comprobar si no son nulos
-            if (!nombre.isNullOrEmpty() and !direccion.isNullOrEmpty() and !fechaCreacion.isNullOrEmpty()){
+            if (!nombre.isNullOrEmpty() and !direccion.isNullOrEmpty() and !fechaCreacionText.isNullOrEmpty()){
+                // Formatear fecha
+                val formatoFecha = SimpleDateFormat("dd/M/yyyy")
+                val fechaCreacion = formatoFecha.parse(fechaCreacionText.toString())
 
                 //Crear la papelería en la bd
-                val respuesta = baseDatos.crearPapeleriaFormulario(nombre,direccion, fechaCreacion,mayorista)
+                agregarPapeleria(nombre.toString(),direccion.toString(),fechaCreacion,mayorista.isChecked)
 
                 //Limpiar los EditText para seguir creando
-                nombreEditText.setText("")
-                direccionEditText.setText("")
-                fechaCrecionEdiText.setText("")
-                mayoristaEditText.isChecked = false
-
-                //Mensaje de retroalimentación
-                if (respuesta){
-                    val builder = AlertDialog.Builder(this)
-                    builder.setTitle("Creación existosa")
-                    builder.setMessage("Se ha creado una papelería de manera existosa")
-                    builder.setPositiveButton(
-                        "Aceptar",
-                        DialogInterface.OnClickListener{dialog,which ->
-                            Log.i("Creacion", "Se desplego la alerta")
-                        }
-                    )
-                    var dialogo = builder.create()
-                    dialogo.show()
-                    return@setOnClickListener
-                }
-            }else{
-                //Mensaje que llene los campos requeridos
-                val builder = AlertDialog.Builder(this)
-                builder.setTitle("Creación fallida")
-                builder.setMessage("Complete todos los campos requeridos para crear una papelería")
-                builder.setPositiveButton(
-                    "Aceptar",
-                    DialogInterface.OnClickListener{dialog,which ->
-                        Log.i("Creacion", "Se desplego la alerta")
-                    }
-                )
-                var dialogo = builder.create()
-                dialogo.show()
-                return@setOnClickListener
+                nombre.clear()
+                direccion.clear()
+                fechaCreacionText.clear()
+                mayorista.isChecked = false
+            } else{
+                mensaje(false)
             }
         }
+    }
+
+    fun agregarPapeleria(nombre: String, direccion: String, fechaCreacion: Date, mayorista: Boolean) {
+
+        val idGenerado = referenciaRestaurante.id
+
+        val nuevoRestaurante = hashMapOf<String,Any>(
+            "id" to idGenerado,
+            "nombre" to nombre,
+            "direccion" to direccion,
+            "fechaCreacion" to Timestamp(fechaCreacion),
+            "mayorista" to mayorista
+        )
+        referenciaRestaurante
+            .document(nombre)
+            .set(nuevoRestaurante)
+            .addOnSuccessListener {
+                mensaje(true)
+            }
+            .addOnFailureListener {
+                mensaje(false)
+            }
+    }
+
+    fun mensaje(tipo : Boolean){
+        val builder = AlertDialog.Builder(this)
+        if(tipo == true){
+            builder.setTitle("Creación existosa")
+            builder.setMessage("Se ha creado una papelería de manera existosa")
+        }else{
+            builder.setTitle("Creación fallida")
+            builder.setMessage("Compruebe los datos ingresados")
+        }
+        builder.setPositiveButton(
+            "Aceptar",
+            DialogInterface.OnClickListener{ dialog, which ->
+                Log.i("Mensajes", "Se desplego la alerta")
+            }
+        )
+        var dialogo = builder.create()
+        dialogo.show()
     }
 
     //Abrir una Actividad sin necesidad de mandar parámetros

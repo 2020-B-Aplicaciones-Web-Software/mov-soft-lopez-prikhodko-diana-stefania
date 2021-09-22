@@ -1,7 +1,8 @@
-package com.example.examen01_lopezdiana
+package com.example.examen01_lopezdiana.entities
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.google.type.LatLng
 
 class Articulo(
     var idArticulo: Int,
@@ -10,7 +11,7 @@ class Articulo(
     var cantidadArticulo: Int,
     var marcaArticulo: String?,
     var descripcionArticulo: String?,
-    var idPapeleria: Int
+    var ubicacionArticulo: LatLng?
 ) : Parcelable{
 
     constructor(parcel: Parcel) : this(
@@ -20,7 +21,7 @@ class Articulo(
         parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readInt()
+        parcel.readValue(ubicacionArticulo) as LatLng?
     ) {
     }
 
@@ -31,7 +32,7 @@ class Articulo(
         parcel.writeInt(cantidadArticulo)
         parcel.writeString(marcaArticulo)
         parcel.writeString(descripcionArticulo)
-        parcel.writeInt(idPapeleria)
+        parcel.writeValue(ubicacionArticulo)
     }
 
     //Método toString sobreescrito para que en la lista se vea mejor

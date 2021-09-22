@@ -10,6 +10,8 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import com.example.examen01_lopezdiana.entities.Articulo
+import com.example.examen01_lopezdiana.entities.Papeleria
 
 class VisualizarArticulosPorPapeleria : AppCompatActivity() {
 
@@ -32,12 +34,12 @@ class VisualizarArticulosPorPapeleria : AppCompatActivity() {
         tituloTextView.setText(papeleriaIntent?.nombrePapeleria.toString())
 
         //Llenar List View
-        llenarListView(papeleriaIntent!!.idPapeleria)
+        //llenarListView(papeleriaIntent!!.idPapeleria)
 
         //Crear artículo en esa papelería
         val botonCrearProductos = findViewById<Button>(R.id.btn_AgregarArticulos)
         botonCrearProductos.setOnClickListener {
-            abrirActividadConParametros1(CrearArticulos::class.java, papeleriaIntent)
+         //   abrirActividadConParametros1(CrearArticulos::class.java, papeleriaIntent)
         }
 
         //Regresar de pantalla de visualizar papelerías
@@ -53,15 +55,14 @@ class VisualizarArticulosPorPapeleria : AppCompatActivity() {
         val arreglo = baseDatos.consultarArticulos(idPapeleria)
         //Creamos el adaptador
         val adaptador = ArrayAdapter(
-            this, //contexto
-            android.R.layout.simple_list_item_1, //Layout (visual)
-            arreglo //arreglo por default
+            this,
+            android.R.layout.simple_list_item_1,
+            arreglo
         )
 
         //Asignamos a la lista el adaptador
         val listView= findViewById<ListView>(R.id.lv_productos)
         listView.adapter = adaptador
-
         //Entregamos la lista contextual
         registerForContextMenu(listView)
     }
@@ -93,11 +94,11 @@ class VisualizarArticulosPorPapeleria : AppCompatActivity() {
                 val papeleriaIntent = intent.getParcelableExtra<Papeleria>("papeleria")
 
                 //Articulo seleccionado
-                val lista = baseDatos.consultarArticulos(papeleriaIntent!!.idPapeleria)
-                val producto = lista[posicionItemSelecionado]
+                //val lista = baseDatos.consultarArticulos(papeleriaIntent!!.idPapeleria)
+              ///  val producto = lista[posicionItemSelecionado]
 
                 //Envío de los 2 objetos
-                abrirActividadConParametros(ActualizarArticulo::class.java,papeleriaIntent,producto)
+              //  abrirActividadConParametros(ActualizarArticulo::class.java,papeleriaIntent,producto)
 
                 return true
             }
@@ -108,8 +109,8 @@ class VisualizarArticulosPorPapeleria : AppCompatActivity() {
                 val papeleriaIntent = intent.getParcelableExtra<Papeleria>("papeleria")
 
                 //Artículo seleccionado
-                val lista = baseDatos.consultarArticulos(papeleriaIntent!!.idPapeleria)
-                val id = lista[posicionItemSelecionado].idArticulo
+               // val lista = baseDatos.consultarArticulos(papeleriaIntent!!.idPapeleria)
+           //     val id = lista[posicionItemSelecionado].idArticulo
 
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle("Eliminación")
@@ -118,9 +119,9 @@ class VisualizarArticulosPorPapeleria : AppCompatActivity() {
                     "Si",
                     DialogInterface.OnClickListener{ dialog, which ->
                         //Eliminar Artículo
-                        baseDatos.eliminarArticuloFormulario(id)
+                    //    baseDatos.eliminarArticuloFormulario(id)
                         //Actualizar la vista
-                        llenarListView(papeleriaIntent.idPapeleria)
+                        //llenarListView(papeleriaIntent.idPapeleria)
                     }
                 )
                 builder.setNegativeButton(

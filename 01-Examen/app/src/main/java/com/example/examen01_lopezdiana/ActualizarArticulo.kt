@@ -8,6 +8,8 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
+import com.example.examen01_lopezdiana.entities.Articulo
+import com.example.examen01_lopezdiana.entities.Papeleria
 
 class ActualizarArticulo : AppCompatActivity() {
 
@@ -59,11 +61,11 @@ class ActualizarArticulo : AppCompatActivity() {
             if (!nombre.isNullOrEmpty() and !marca.isNullOrEmpty() and !descripcion.isNullOrEmpty() and !precio.equals("") and !cantidad.equals("")){
 
                 //Actualizar el artículo
-                val respuesta = baseDatos.actualizarArticuloFormulario(nombre,precio,cantidad,marca,descripcion,articuloIntet.idArticulo,
-                    papeleriaIntet!!.idPapeleria)
+               // val respuesta = baseDatos.actualizarArticuloFormulario(nombre,precio,cantidad,marca,descripcion,articuloIntet.idArticulo,
+                //    papeleriaIntet!!.idPapeleria)
 
                 //Mensaje de retroalimentacion
-                if(respuesta){
+                if(true){
                     val builder = AlertDialog.Builder(this)
                     builder.setTitle("Actualización exitosa")
                     builder.setMessage("Se ha actualizado un artículo de manera existosa")

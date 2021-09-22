@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
+import com.example.examen01_lopezdiana.entities.Papeleria
 
 class CrearArticulos : AppCompatActivity() {
 
@@ -55,8 +56,8 @@ class CrearArticulos : AppCompatActivity() {
             if(!nombre.isNullOrEmpty() and !precio.equals("") and !cantidad.equals("") and !marca.isNullOrEmpty() and !descripcion.isNullOrEmpty()){
 
                 //Crear Articulo
-                val respuesta = baseDatos.crearArticuloFormulario(nombre,precio,cantidad,marca,descripcion,
-                    papeleriaIntent!!.idPapeleria)
+               // val respuesta = baseDatos.crearArticuloFormulario(nombre,precio,cantidad,marca,descripcion,
+               //     papeleriaIntent!!.idPapeleria)
 
                 //Limpiar la vista
                 nombreEditText.setText("")
@@ -66,7 +67,7 @@ class CrearArticulos : AppCompatActivity() {
                 descripcionEditText.setText("")
 
                 //Muestra un mensaje de retroalimentación
-                if (respuesta){
+                if (true){
                     val builder = AlertDialog.Builder(this)
                     builder.setTitle("Creación Exitosa")
                     builder.setMessage("Se ha creado un artículo de manera existosa")

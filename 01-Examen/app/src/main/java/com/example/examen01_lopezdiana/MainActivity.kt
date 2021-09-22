@@ -13,15 +13,26 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
 import androidx.appcompat.app.AlertDialog
+import com.example.examen01_lopezdiana.entities.Papeleria
+import com.google.firebase.Timestamp
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
 
     //Variable para saber la posicion de una papelería
     var posicionItemSelecionado = 0
-    //Variable para el uso de la BD
-    var baseDatos = ESqliteHelper(this)
+
+    //Referencia a la base de datos
+    val db = Firebase.firestore
+    val referenciaRestaurante= db.collection("papeleria")
+
     //Envio de datos a otra Actividad
     val CODIGO_REPUESTA_INTENT_EXPLICITO = 100
+
+    // Arreglo de papelerias
+    var arregloPapeleria = arrayListOf<Papeleria>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -34,50 +45,71 @@ class MainActivity : AppCompatActivity() {
             abrirActividad(CrearPapeleria::class.java)
         }
 
-        //Llenar el ListViewy la manipulación de sus menús contextuales
-        llenarListView()
+        //Llenar el ListView y la manipulación de sus menús contextuales
+        obtenerRestaurantes()
+    }
+
+    fun obtenerRestaurantes() {
+        arregloPapeleria = arrayListOf<Papeleria>()
+        // Obtencion del arreglo de papelerias
+        referenciaRestaurante
+            .get()
+            .addOnSuccessListener { documentos ->
+                documentos.forEach { documento ->
+                    val fecha = documento["fechaCreacion"] as Timestamp
+                    arregloPapeleria.add(Papeleria(
+                        documento["id"].toString(),
+                        documento["nombre"].toString(),
+                        documento["direccion"].toString(),
+                        fecha?.toDate(),
+                        documento["mayorista"] as Boolean?
+                    ))
+
+                }
+                llenarListView() // Llenar la lista luego de acabar la ejecucion
+            }
+            .addOnFailureListener {
+                Log.i("Error","No se pudo obtener ningun restaurante")
+            }
+    }
+
+    fun eliminarPapeleria(nombre : String){
+        // Obtencion del arreglo de papelerias
+        referenciaRestaurante
+            .document(nombre)
+            .delete()
+            .addOnSuccessListener {
+                mensaje()
+                obtenerRestaurantes() // Llenar la lista luego de acabar la ejecucion
+            }
+            .addOnFailureListener {
+                Log.i("Error","No se pudo obtener ningun restaurante")
+            }
     }
 
     fun llenarListView(){
 
-        // Obtenemos la lista de papelerías registradas
-        val arreglo = baseDatos.consultarPapelerias()
-
-        //Creamos el adaptador
         val adaptador = ArrayAdapter(
-            this, //contexto
-            android.R.layout.simple_list_item_1, //Layout (visual)
-            arreglo //arreglo por default
+            this,
+            android.R.layout.simple_list_item_1,
+            arregloPapeleria
         )
-
         //Asignamos a la lista el adaptador
         val listView= findViewById<ListView>(R.id.lv_productos)
         listView.adapter = adaptador
-
         //Entregamos la lista contextual
         registerForContextMenu(listView)
     }
 
-    //Abrir una Actividad sin necesidad de mandar parámetros
-    fun abrirActividad(
-        clase : Class<*>
-    ){
-        val intentExplicito = Intent(
-            this,
-            clase
-        )
+    //Abrir una Actividad
+    fun abrirActividad( clase : Class<*> ){
+        val intentExplicito = Intent(this, clase )
         startActivity(intentExplicito)
     }
 
     //Abrir una Actividad mandando una papelería
-    fun abrirActividadConParametros(
-        clase : Class<*>,
-        papeleria: Papeleria
-    ){
-        val intentExplicito = Intent(
-            this,
-            clase
-        )
+    fun abrirActividadConParametros(clase : Class<*>, papeleria: Papeleria){
+        val intentExplicito = Intent(this, clase)
         intentExplicito.putExtra("papeleria", papeleria)
         startActivityForResult(intentExplicito, CODIGO_REPUESTA_INTENT_EXPLICITO)
     }
@@ -90,7 +122,7 @@ class MainActivity : AppCompatActivity() {
     ) {
         super.onCreateContextMenu(menu, v, menuInfo)
         val inflater = menuInflater
-        inflater.inflate(R.menu.menu, menu) //inclusión
+        inflater.inflate(R.menu.menu, menu)
 
         val info = menuInfo as AdapterView.AdapterContextMenuInfo
         val id = info.position
@@ -101,60 +133,40 @@ class MainActivity : AppCompatActivity() {
     //Dar funcionalidad a los ítems de la lista seleccionado
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when(item?.itemId){
-            //Visualizar articulos de una papelería
             R.id.mi_visualizar -> {
-
                 // Obtener el objeto y mandarlo a la actividad de visualizar los artículos
-                val lista = baseDatos.consultarPapelerias()
-                val papeleria = lista[posicionItemSelecionado]
-
+                val papeleria = arregloPapeleria[posicionItemSelecionado]
                 abrirActividadConParametros(VisualizarArticulosPorPapeleria::class.java,papeleria)
-
                 return true
             }
-            //Eliminar papelería
             R.id.mi_borrarPapeleria -> {
-
-                //Obtener el id de la papelería a eliminar
-                val lista = baseDatos.consultarPapelerias()
-                val id = lista[posicionItemSelecionado].idPapeleria
-
-                //Actualizar la vista
-                val builder = AlertDialog.Builder(this)
-                builder.setTitle("Eliminación de papelería")
-                builder.setMessage("¿Esta seguro de eliminar esta papelería?")
-                builder.setPositiveButton(
-                    "Si",
-                    DialogInterface.OnClickListener{ dialog, which ->
-                        //Eliminar
-                        baseDatos.eliminarPapeleriaFormulario(id)
-                        llenarListView()
-                    }
-                )
-                builder.setNegativeButton(
-                    "No",
-                    DialogInterface.OnClickListener{dialog, which ->
-                        Log.i("Creacion", "No se eliminó")
-                    }
-                )
-                val dialogo = builder.create()
-                dialogo.show()
-
+                //Obtener el nombre de la papelería a eliminar
+                val nombre = arregloPapeleria[posicionItemSelecionado].nombrePapeleria
+                eliminarPapeleria(nombre!!)
                 return true
             }
-            //Actualizar papelería
             R.id.mi_actualizarPapeleria ->{
-
                 //Obtener el objeto papelería a actualizar y mandarlo a la actividad
-                val lista = baseDatos.consultarPapelerias()
-                val papeleria = lista[posicionItemSelecionado]
-
+                val papeleria = arregloPapeleria[posicionItemSelecionado]
                 abrirActividadConParametros(ActualizarPapeleria::class.java, papeleria)
-
                 return true
             }
             else -> super.onContextItemSelected(item)
         }
+    }
+
+    fun mensaje(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Eliminación existosa")
+        builder.setMessage("Se ha eliminado una papelería de manera existosa")
+        builder.setPositiveButton(
+            "Aceptar",
+            DialogInterface.OnClickListener{ dialog, which ->
+                Log.i("Mensajes", "Se desplego la alerta")
+            }
+        )
+        var dialogo = builder.create()
+        dialogo.show()
     }
 
 }

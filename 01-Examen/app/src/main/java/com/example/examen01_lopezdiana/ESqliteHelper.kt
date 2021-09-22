@@ -5,8 +5,8 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
-import java.text.SimpleDateFormat
-import java.util.*
+import com.example.examen01_lopezdiana.entities.Articulo
+import com.example.examen01_lopezdiana.entities.Papeleria
 
 class ESqliteHelper (
     contexto: Context?
@@ -102,9 +102,9 @@ class ESqliteHelper (
                     var mayoristaNum = resultadoConsultaLectura.getString(4).toInt()//Columna índice 4
                     var mayorista = if (mayoristaNum == 1) true else false
                     if (id != null){
-                        papeleriasEncontradas.add(
-                            Papeleria(id,nombre,direccion, fechaCreacion ,mayorista)
-                        )
+                       // papeleriasEncontradas.add(
+                           // Papeleria(id.toString(),nombre,direccion, fechaCreacion ,mayorista)
+                        //)
                     }
                 }while(resultadoConsultaLectura.moveToNext())
             }

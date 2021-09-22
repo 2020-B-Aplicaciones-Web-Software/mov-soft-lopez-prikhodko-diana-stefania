@@ -9,8 +9,17 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
+import com.example.examen01_lopezdiana.entities.Papeleria
+import com.google.firebase.Timestamp
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import java.text.SimpleDateFormat
 
 class ActualizarPapeleria : AppCompatActivity() {
+
+    //Referencia a la base de datos
+    val db = Firebase.firestore
+    val referenciaRestaurante= db.collection("papeleria")
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -29,7 +38,6 @@ class ActualizarPapeleria : AppCompatActivity() {
         //Obtener los datos de la papelería
         val papeleria = intent.getParcelableExtra<Papeleria>("papeleria")
 
-        val id = papeleria?.idPapeleria!!.toInt()
 
         //Obtener los EditText con la información
         var nombreEditText = findViewById<EditText>(R.id.box_nombrePapeleriaActualizar)
@@ -37,11 +45,15 @@ class ActualizarPapeleria : AppCompatActivity() {
         var direccionEditText = findViewById<EditText>(R.id.box_direccionPapeleriaActualizar)
         var mayoristaEditText = findViewById<CheckBox>(R.id.cb_MayoristaActualizar)
 
+        // Formatear fecha
+        val format = SimpleDateFormat("dd/MM/yyyy")
+        val fechaCreacion = format.format(papeleria?.fechaAperturaPapeleria)
+
         //Colocar los datos de la papelería a actualizar
-        nombreEditText.setText(papeleria?.nombrePapeleria.toString())
-        fechaCrecionEdiText.setText(papeleria?.fechaAperturaPapeleria.toString())
-        direccionEditText.setText(papeleria?.direccionPapeleria.toString())
-        if (papeleria.mayorista == true){
+        nombreEditText.setText(papeleria?.nombrePapeleria)
+        fechaCrecionEdiText.setText(fechaCreacion.toString())
+        direccionEditText.setText(papeleria?.direccionPapeleria)
+        if (papeleria!!.mayorista == true) {
             mayoristaEditText.isChecked = true
         }
 
@@ -56,43 +68,55 @@ class ActualizarPapeleria : AppCompatActivity() {
             val mayorista = mayoristaEditText.isChecked
 
             //Comprobar si no son nulos
-            if (!nombre.isNullOrEmpty() and !direccion.isNullOrEmpty() and !fechaCreacion.isNullOrEmpty()){
-
-                //Actualizar en la bd
-                val respuesta = baseDatos.actualizarPapeleriaFormulario(nombre,direccion, fechaCreacion,mayorista,id)
-
-                //Mensaje de retroalimentación
-                if (respuesta){
-                    val builder = AlertDialog.Builder(this)
-                    builder.setTitle("Actualización existosa")
-                    builder.setMessage("Se ha actualizado una papelería de manera existosa")
-                    builder.setPositiveButton(
-                        "Aceptar",
-                        DialogInterface.OnClickListener{ dialog, which ->
-                            Log.i("Actualizacion", "Se desplego la alerta")
-                        }
-                    )
-                    var dialogo = builder.create()
-                    dialogo.show()
-                    return@setOnClickListener
-                }
-
+            if (!nombre.isNullOrEmpty() and !direccion.isNullOrEmpty() and !fechaCreacion.isNullOrEmpty()) {
+                actualizarRestaurante(nombre,fechaCreacion,direccion,mayorista)
             }else{
-                //Mensaje que llene los campos requeridos
-                val builder = AlertDialog.Builder(this)
-                builder.setTitle("Actualización fallida")
-                builder.setMessage("Complete todos los campos requeridos para actualizar una papelería")
-                builder.setPositiveButton(
-                    "Aceptar",
-                    DialogInterface.OnClickListener{ dialog, which ->
-                        Log.i("Actualizacion", "Se desplego la alerta")
-                    }
-                )
-                var dialogo = builder.create()
-                dialogo.show()
-                return@setOnClickListener
+                mensaje(false)
             }
         }
+    }
+
+    fun actualizarRestaurante(nombre : String, fecha:String, direccion: String, mayorista: Boolean){
+        // Formatear fecha
+        val formatoFecha = SimpleDateFormat("dd/M/yyyy")
+        val fechaCreacion = formatoFecha.parse(fecha)
+
+        db.runTransaction{actualizacion ->
+            actualizacion.update(
+                referenciaRestaurante.document(nombre),
+                mapOf(
+                    "nombre" to nombre,
+                    "direccion" to direccion,
+                    "mayorista" to mayorista,
+                    "fechaCreacion" to Timestamp(fechaCreacion)
+                )
+            )
+        }
+            .addOnSuccessListener {
+                mensaje(true)
+            }
+            .addOnFailureListener {
+                mensaje(false)
+            }
+    }
+
+    fun mensaje(tipo : Boolean){
+        val builder = AlertDialog.Builder(this)
+        if(tipo == true){
+            builder.setTitle("Actualización existosa")
+            builder.setMessage("Se ha actualizado una papelería de manera existosa")
+        }else{
+            builder.setTitle("Actualización fallida")
+            builder.setMessage("Compruebe los datos ingresados")
+        }
+        builder.setPositiveButton(
+            "Aceptar",
+            DialogInterface.OnClickListener{ dialog, which ->
+                Log.i("Mensajes", "Se desplego la alerta")
+            }
+        )
+        var dialogo = builder.create()
+        dialogo.show()
     }
 
     //Abrir la Actividad de regreso sin necesidad de mandar ningún parámetro
