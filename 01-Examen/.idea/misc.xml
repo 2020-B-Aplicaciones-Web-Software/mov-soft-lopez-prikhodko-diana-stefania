@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/01-Examen/app/src/main/res/layout/activity_actualizar_articulo.xml" value="0.25416666666666665" />
+        <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/01-Examen/app/src/main/res/layout/activity_actualizar_papeleria.xml" value="0.25416666666666665" />
+        <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/01-Examen/app/src/main/res/layout/activity_crear_articulos.xml" value="0.25416666666666665" />
         <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/01-Examen/app/src/main/res/layout/activity_main.xml" value="0.18125" />
+        <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/01-Examen/app/src/main/res/layout/activity_ubicacion_producto.xml" value="0.24010416666666667" />
+        <entry key="..\:/GitKrak/mov-soft-lopez-prikhodko-diana-stefania/01-Examen/app/src/main/res/menu/menu1.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

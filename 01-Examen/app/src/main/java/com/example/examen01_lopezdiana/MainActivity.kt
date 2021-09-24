@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
 import androidx.appcompat.app.AlertDialog
+import com.example.examen01_lopezdiana.entities.Articulo
 import com.example.examen01_lopezdiana.entities.Papeleria
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.ktx.firestore
@@ -74,6 +75,43 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun eliminarPapeleria(nombre : String){
+
+        var arregloArticulos = arrayListOf<Articulo>()
+        val referenciaProductos= db.collection("papeleria/${nombre}/productos")
+
+        // Obtencion del arreglo de papelerias
+        referenciaProductos
+            .get()
+            .addOnSuccessListener { documentos ->
+                documentos.forEach { documento ->
+                    arregloArticulos.add(Articulo(
+                        documento["id"].toString(),
+                        documento["nombre"].toString(),
+                        documento["precio"].toString().toDouble(),
+                        documento["cantidad"].toString().toInt(),
+                        documento["marca"].toString(),
+                        documento["descripcion"].toString(),
+                        documento["latitud"].toString().toDouble(),
+                        documento["longitud"].toString().toDouble()
+                    ))
+                }
+                arregloArticulos.forEach{producto ->
+                    referenciaProductos
+                        .document(producto.idArticulo.toString())
+                        .delete()
+                        .addOnSuccessListener {
+                            Log.i("Eliminacion","Se estan eliminando todos los productos")
+                        }
+                        .addOnFailureListener {
+                            Log.i("Error","No se pudo obtener ningun restaurante")
+                        }
+                }
+            }
+            .addOnFailureListener {
+                Log.i("Error","No se pudo obtener ningun restaurante")
+            }
+
+
         // Obtencion del arreglo de papelerias
         referenciaRestaurante
             .document(nombre)

@@ -1,43 +1,50 @@
 package com.example.examen01_lopezdiana.entities
 
+import android.opengl.GLException
 import android.os.Parcel
 import android.os.Parcelable
+import com.google.firebase.firestore.GeoPoint
 import com.google.type.LatLng
 
 class Articulo(
-    var idArticulo: Int,
+    var idArticulo: String?,
     var nombreArticulo: String?,
     var precioArticulo: Double,
     var cantidadArticulo: Int,
     var marcaArticulo: String?,
     var descripcionArticulo: String?,
-    var ubicacionArticulo: LatLng?
+    var ubicacionLatArticulo: Double?,
+    var ubicacionLngArticulo: Double?
 ) : Parcelable{
 
     constructor(parcel: Parcel) : this(
-        parcel.readInt(),
+        parcel.readString(),
         parcel.readString(),
         parcel.readDouble(),
         parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readValue(ubicacionArticulo) as LatLng?
+        parcel.readDouble(),
+        parcel.readDouble()
     ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(idArticulo)
+        parcel.writeString(idArticulo)
         parcel.writeString(nombreArticulo)
         parcel.writeDouble(precioArticulo)
         parcel.writeInt(cantidadArticulo)
         parcel.writeString(marcaArticulo)
         parcel.writeString(descripcionArticulo)
-        parcel.writeValue(ubicacionArticulo)
+        parcel.writeDouble(ubicacionLatArticulo!!)
+        parcel.writeDouble(ubicacionLngArticulo!!)
     }
 
     //Método toString sobreescrito para que en la lista se vea mejor
     override fun toString(): String {
-        return "Nombre: ${nombreArticulo}\nPrecio: ${precioArticulo}\nCantidad: ${cantidadArticulo}\nMarca: ${marcaArticulo}\nDescripcion: ${descripcionArticulo}"
+        return "Nombre: ${nombreArticulo}\nPrecio: ${precioArticulo}\nCantidad: ${cantidadArticulo}\n" +
+                "Marca: ${marcaArticulo}\nDescripcion: ${descripcionArticulo}\nUbicación: (${ubicacionLatArticulo}" +
+                ",${ubicacionLngArticulo})"
     }
 
     override fun describeContents(): Int {

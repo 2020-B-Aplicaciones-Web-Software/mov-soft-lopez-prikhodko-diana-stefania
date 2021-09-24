@@ -8,4 +8,7 @@
     <item
         android:id="@+id/mi_borrarArticulo"
         android:title="Borrar" />
+    <item
+        android:id="@+id/mi_visualizarUbicacion"
+        android:title="Ver Ubicación" />
 </menu>

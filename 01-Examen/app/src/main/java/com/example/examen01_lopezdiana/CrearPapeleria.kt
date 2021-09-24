@@ -24,9 +24,6 @@ class CrearPapeleria : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_crear_papeleria)
 
-        //Variable para el uso de la BD
-        var baseDatos = ESqliteHelper(this)
-
         //Regresar al menú principal
         val botonRegresar = findViewById<Button>(R.id.btn_regresarCreacionPapeleria)
         botonRegresar.setOnClickListener {

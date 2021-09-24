@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Examen 01 - Lopez Diana</string>
+    <string name="title_activity_ubicacion_producto">UbicacionProducto</string>
 </resources>

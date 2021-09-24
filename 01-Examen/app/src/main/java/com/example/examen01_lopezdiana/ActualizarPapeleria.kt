@@ -25,10 +25,7 @@ class ActualizarPapeleria : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_actualizar_papeleria)
-
-        //Variable para el uso de la BD
-        var baseDatos = ESqliteHelper(this)
-
+        
         //Regresar al menú principal
         val botonRegresar = findViewById<Button>(R.id.btn_regresarCreacionPapeleriaActualizar)
         botonRegresar.setOnClickListener {
