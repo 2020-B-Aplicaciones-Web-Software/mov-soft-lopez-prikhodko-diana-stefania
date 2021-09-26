@@ -1,4 +1,4 @@
-package com.example.examen01_lopezdiana
+package com.example.examen01_lopezdiana.papeleria
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
+import com.example.examen01_lopezdiana.R
 import com.example.examen01_lopezdiana.entities.Papeleria
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.ktx.firestore
@@ -25,7 +26,7 @@ class ActualizarPapeleria : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_actualizar_papeleria)
-        
+
         //Regresar al menú principal
         val botonRegresar = findViewById<Button>(R.id.btn_regresarCreacionPapeleriaActualizar)
         botonRegresar.setOnClickListener {

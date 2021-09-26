@@ -1,4 +1,4 @@
-package com.example.examen01_lopezdiana
+package com.example.examen01_lopezdiana.papeleria
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -10,9 +10,12 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import com.example.examen01_lopezdiana.R
+import com.example.examen01_lopezdiana.articulos.ActualizarArticulo
 import com.example.examen01_lopezdiana.entities.Articulo
 import com.example.examen01_lopezdiana.entities.Papeleria
-import com.google.firebase.Timestamp
+import com.example.examen01_lopezdiana.articulos.CrearArticulos
+import com.example.examen01_lopezdiana.articulos.UbicacionArticulo
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -112,7 +115,7 @@ class VisualizarArticulosPorPapeleria : AppCompatActivity() {
             R.id.mi_visualizarUbicacion -> {
                 val papeleria = intent.getParcelableExtra<Papeleria>("papeleria")
                 val articulo = arregloArticulos[posicionItemSelecionado]
-                abrirActividadConParametros(UbicacionProducto::class.java, papeleria!!,articulo)
+                abrirActividadConParametros(UbicacionArticulo::class.java, papeleria!!,articulo)
                 return true
             }
             else -> super.onContextItemSelected(item)

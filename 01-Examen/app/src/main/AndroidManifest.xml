@@ -30,15 +30,15 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".UbicacionProducto"
+            android:name=".articulos.UbicacionArticulo"
             android:exported="true"
             android:label="@string/title_activity_ubicacion_producto" />
-        <activity android:name=".CrearPapeleria" />
-        <activity android:name=".CrearArticulos" />
-        <activity android:name=".VisualizarArticulosPorPapeleria" />
-        <activity android:name=".ActualizarArticulo" />
-        <activity android:name=".ActualizarPapeleria" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".papeleria.CrearPapeleria" />
+        <activity android:name=".articulos.CrearArticulos" />
+        <activity android:name=".papeleria.VisualizarArticulosPorPapeleria" />
+        <activity android:name=".articulos.ActualizarArticulo" />
+        <activity android:name=".papeleria.ActualizarPapeleria" />
+        <activity android:name=".papeleria.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

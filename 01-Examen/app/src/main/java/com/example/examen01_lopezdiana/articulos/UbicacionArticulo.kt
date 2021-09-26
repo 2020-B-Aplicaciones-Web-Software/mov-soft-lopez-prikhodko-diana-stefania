@@ -1,11 +1,11 @@
-package com.example.examen01_lopezdiana
+package com.example.examen01_lopezdiana.articulos
 
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.examen01_lopezdiana.R
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -15,11 +15,8 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.example.examen01_lopezdiana.databinding.ActivityUbicacionProductoBinding
 import com.example.examen01_lopezdiana.entities.Articulo
-import com.example.examen01_lopezdiana.entities.Papeleria
-import com.google.android.gms.maps.model.PolygonOptions
-import com.google.android.gms.maps.model.PolylineOptions
 
-class UbicacionProducto : AppCompatActivity(), OnMapReadyCallback {
+class UbicacionArticulo : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityUbicacionProductoBinding

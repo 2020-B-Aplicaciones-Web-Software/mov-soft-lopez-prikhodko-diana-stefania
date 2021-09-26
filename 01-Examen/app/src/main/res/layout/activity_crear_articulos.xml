@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CrearArticulos">
+    tools:context=".articulos.CrearArticulos">
 
     <EditText
         android:id="@+id/box_nombreArticuloCrear"

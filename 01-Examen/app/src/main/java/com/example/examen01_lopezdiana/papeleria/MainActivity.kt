@@ -1,4 +1,4 @@
-package com.example.examen01_lopezdiana
+package com.example.examen01_lopezdiana.papeleria
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
 import androidx.appcompat.app.AlertDialog
+import com.example.examen01_lopezdiana.R
 import com.example.examen01_lopezdiana.entities.Articulo
 import com.example.examen01_lopezdiana.entities.Papeleria
 import com.google.firebase.Timestamp
