@@ -18,7 +18,7 @@ class CrearPapeleria : AppCompatActivity() {
 
     //Referencia a la base de datos
     val db = Firebase.firestore
-    val referenciaRestaurante= db.collection("papeleria")
+    val referenciaPapeleria= db.collection("papeleria")
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -64,7 +64,7 @@ class CrearPapeleria : AppCompatActivity() {
 
     fun agregarPapeleria(nombre: String, direccion: String, fechaCreacion: Date, mayorista: Boolean) {
 
-        val idGenerado = referenciaRestaurante.document().id
+        val idGenerado = referenciaPapeleria.document().id
 
         val nuevaPapeleria = hashMapOf<String,Any>(
             "id" to idGenerado,
@@ -73,7 +73,7 @@ class CrearPapeleria : AppCompatActivity() {
             "fechaCreacion" to Timestamp(fechaCreacion),
             "mayorista" to mayorista
         )
-        referenciaRestaurante
+        referenciaPapeleria
             .document(idGenerado)
             .set(nuevaPapeleria)
             .addOnSuccessListener {

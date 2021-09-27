@@ -79,7 +79,7 @@ class VisualizarArticulosPorPapeleria : AppCompatActivity() {
                 llenarListView() // Llenar la lista luego de acabar la ejecucion
             }
             .addOnFailureListener {
-                Log.i("Error","No se pudo obtener ningun restaurante")
+                Log.i("Error","No se pudo obtener ningun articulo")
             }
 
     }
@@ -95,7 +95,7 @@ class VisualizarArticulosPorPapeleria : AppCompatActivity() {
                 obtenerProductos(nombrePapeleria)
             }
             .addOnFailureListener {
-                Log.i("Error","No se pudo obtener ningun restaurante")
+                Log.i("Error","No se pudo obtener ningun articulo")
             }
     }
 

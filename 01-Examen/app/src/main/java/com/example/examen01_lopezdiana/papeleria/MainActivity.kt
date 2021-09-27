@@ -48,10 +48,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         //Llenar el ListView y la manipulación de sus menús contextuales
-        obtenerRestaurantes()
+        obtenerPapelerias()
     }
 
-    fun obtenerRestaurantes() {
+    fun obtenerPapelerias() {
         arregloPapeleria = arrayListOf<Papeleria>()
         // Obtencion del arreglo de papelerias
         referenciaPapeleria
@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
                 llenarListView() // Llenar la lista luego de acabar la ejecucion
             }
             .addOnFailureListener {
-                Log.i("Error","No se pudo obtener ningun restaurante")
+                Log.i("Error","No se pudo obtener ninguna papeleria")
             }
     }
 
@@ -104,12 +104,12 @@ class MainActivity : AppCompatActivity() {
                             Log.i("Eliminacion","Se estan eliminando todos los productos")
                         }
                         .addOnFailureListener {
-                            Log.i("Error","No se pudo obtener ningun restaurante")
+                            Log.i("Error","No se pudo obtener ninguna papeleria")
                         }
                 }
             }
             .addOnFailureListener {
-                Log.i("Error","No se pudo obtener ningun restaurante")
+                Log.i("Error","No se pudo obtener ninguna papeleria")
             }
 
 
@@ -119,10 +119,10 @@ class MainActivity : AppCompatActivity() {
             .delete()
             .addOnSuccessListener {
                 mensaje()
-                obtenerRestaurantes() // Llenar la lista luego de acabar la ejecucion
+                obtenerPapelerias() // Llenar la lista luego de acabar la ejecucion
             }
             .addOnFailureListener {
-                Log.i("Error","No se pudo obtener ningun restaurante")
+                Log.i("Error","No se pudo obtener ninguna papeleria")
             }
     }
 
