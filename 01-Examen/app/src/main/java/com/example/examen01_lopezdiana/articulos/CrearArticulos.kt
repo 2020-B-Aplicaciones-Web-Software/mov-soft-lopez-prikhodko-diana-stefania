@@ -54,7 +54,7 @@ class CrearArticulos : AppCompatActivity() {
                 and !marca.isNullOrEmpty() and !descripcion.isNullOrEmpty() and !latitud.isNullOrEmpty()
                 and !longitud.isNullOrEmpty()){
                 // Llamar al método
-                crearArticulo(papeleriaIntent?.nombrePapeleria.toString(), nombre.toString(),precio.toString().toDouble(),cantidad.toString().toInt(),marca.toString(),descripcion.toString(),latitud.toString().toDouble(), longitud.toString().toDouble())
+                crearArticulo(papeleriaIntent?.idPapeleria.toString(), nombre.toString(),precio.toString().toDouble(),cantidad.toString().toInt(),marca.toString(),descripcion.toString(),latitud.toString().toDouble(), longitud.toString().toDouble())
                 //Limpiar la vista
                 nombre.clear()
                 precio.clear()
@@ -69,9 +69,9 @@ class CrearArticulos : AppCompatActivity() {
         }
     }
 
-    fun crearArticulo(papeleriaNombre : String, nombre: String, precio: Double, cantidad: Int, marca: String, descripcion: String, latitud: Double, longitud: Double) {
+    fun crearArticulo(idPapeleria : String, nombre: String, precio: Double, cantidad: Int, marca: String, descripcion: String, latitud: Double, longitud: Double) {
 
-        val referenciaProductos= db.collection("papeleria/${papeleriaNombre}/productos")
+        val referenciaProductos= db.collection("papeleria/${idPapeleria}/productos")
 
         val idGenerado = referenciaProductos.document().id
 

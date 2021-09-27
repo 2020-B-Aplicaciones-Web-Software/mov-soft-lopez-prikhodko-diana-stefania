@@ -64,9 +64,9 @@ class CrearPapeleria : AppCompatActivity() {
 
     fun agregarPapeleria(nombre: String, direccion: String, fechaCreacion: Date, mayorista: Boolean) {
 
-        val idGenerado = referenciaRestaurante.id
+        val idGenerado = referenciaRestaurante.document().id
 
-        val nuevoRestaurante = hashMapOf<String,Any>(
+        val nuevaPapeleria = hashMapOf<String,Any>(
             "id" to idGenerado,
             "nombre" to nombre,
             "direccion" to direccion,
@@ -74,8 +74,8 @@ class CrearPapeleria : AppCompatActivity() {
             "mayorista" to mayorista
         )
         referenciaRestaurante
-            .document(nombre)
-            .set(nuevoRestaurante)
+            .document(idGenerado)
+            .set(nuevaPapeleria)
             .addOnSuccessListener {
                 mensaje(true)
             }

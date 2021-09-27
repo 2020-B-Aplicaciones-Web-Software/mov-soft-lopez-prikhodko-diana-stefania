@@ -75,28 +75,6 @@ class UbicacionArticulo : AppCompatActivity(), OnMapReadyCallback {
         )
     }
 
-    fun solicitarPermisos(){
-        val contexto = this.applicationContext
-
-        val permisosFineLocation = ContextCompat
-            .checkSelfPermission(
-                contexto,
-                android.Manifest.permission.ACCESS_FINE_LOCATION
-            )
-        val tienePermiso = permisosFineLocation == PackageManager.PERMISSION_GRANTED
-        if(tienePermiso){
-            permisos = true
-        }else{
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf( //Arreglo permisos
-                    android.Manifest.permission.ACCESS_FINE_LOCATION
-                ),
-                1//Código de peticion de los permisos
-            )
-        }
-
-    }
 
     fun establecerConfiguracionMapa(){
 

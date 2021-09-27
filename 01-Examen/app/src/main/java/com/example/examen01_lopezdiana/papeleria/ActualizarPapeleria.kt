@@ -20,7 +20,7 @@ class ActualizarPapeleria : AppCompatActivity() {
 
     //Referencia a la base de datos
     val db = Firebase.firestore
-    val referenciaRestaurante= db.collection("papeleria")
+    val referenciaPapeleria= db.collection("papeleria")
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -67,21 +67,21 @@ class ActualizarPapeleria : AppCompatActivity() {
 
             //Comprobar si no son nulos
             if (!nombre.isNullOrEmpty() and !direccion.isNullOrEmpty() and !fechaCreacion.isNullOrEmpty()) {
-                actualizarRestaurante(nombre,fechaCreacion,direccion,mayorista)
+                actualizarPapeleria(papeleria.idPapeleria.toString(),nombre,fechaCreacion,direccion,mayorista)
             }else{
                 mensaje(false)
             }
         }
     }
 
-    fun actualizarRestaurante(nombre : String, fecha:String, direccion: String, mayorista: Boolean){
+    fun actualizarPapeleria(id: String, nombre : String, fecha:String, direccion: String, mayorista: Boolean){
         // Formatear fecha
-        val formatoFecha = SimpleDateFormat("dd/M/yyyy")
+        val formatoFecha = SimpleDateFormat("dd/MM/yyyy")
         val fechaCreacion = formatoFecha.parse(fecha)
 
         db.runTransaction{actualizacion ->
             actualizacion.update(
-                referenciaRestaurante.document(nombre),
+                referenciaPapeleria.document(id),
                 mapOf(
                     "nombre" to nombre,
                     "direccion" to direccion,

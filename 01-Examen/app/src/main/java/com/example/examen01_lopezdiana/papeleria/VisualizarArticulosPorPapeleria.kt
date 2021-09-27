@@ -42,7 +42,7 @@ class VisualizarArticulosPorPapeleria : AppCompatActivity() {
         tituloTextView.setText(papeleria?.nombrePapeleria.toString())
 
         //Llenar List View
-        obtenerProductos(papeleria?.nombrePapeleria!!)
+        obtenerProductos(papeleria?.idPapeleria!!)
 
         //Crear artículo en esa papelería
         val botonCrearProductos = findViewById<Button>(R.id.btn_AgregarArticulos)
@@ -57,8 +57,8 @@ class VisualizarArticulosPorPapeleria : AppCompatActivity() {
         }
     }
 
-    fun obtenerProductos(nombrePapeleria: String){
-        val referenciaProductos= db.collection("papeleria/${nombrePapeleria}/productos")
+    fun obtenerProductos(idPapeleria: String){
+        val referenciaProductos= db.collection("papeleria/${idPapeleria}/productos")
         arregloArticulos = arrayListOf<Articulo>()
         // Obtencion del arreglo de papelerias
         referenciaProductos

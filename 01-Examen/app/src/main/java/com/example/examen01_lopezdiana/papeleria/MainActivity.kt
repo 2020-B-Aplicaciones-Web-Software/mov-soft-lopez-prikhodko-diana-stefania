@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
     //Referencia a la base de datos
     val db = Firebase.firestore
-    val referenciaRestaurante= db.collection("papeleria")
+    val referenciaPapeleria= db.collection("papeleria")
 
     //Envio de datos a otra Actividad
     val CODIGO_REPUESTA_INTENT_EXPLICITO = 100
@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
     fun obtenerRestaurantes() {
         arregloPapeleria = arrayListOf<Papeleria>()
         // Obtencion del arreglo de papelerias
-        referenciaRestaurante
+        referenciaPapeleria
             .get()
             .addOnSuccessListener { documentos ->
                 documentos.forEach { documento ->
@@ -75,13 +75,13 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-    fun eliminarPapeleria(nombre : String){
+    fun eliminarPapeleria(idPapeleria : String){
 
         var arregloArticulos = arrayListOf<Articulo>()
-        val referenciaProductos= db.collection("papeleria/${nombre}/productos")
+        val referenciaArticulos= db.collection("papeleria/${idPapeleria}/productos")
 
         // Obtencion del arreglo de papelerias
-        referenciaProductos
+        referenciaArticulos
             .get()
             .addOnSuccessListener { documentos ->
                 documentos.forEach { documento ->
@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity() {
                     ))
                 }
                 arregloArticulos.forEach{producto ->
-                    referenciaProductos
+                    referenciaArticulos
                         .document(producto.idArticulo.toString())
                         .delete()
                         .addOnSuccessListener {
@@ -114,8 +114,8 @@ class MainActivity : AppCompatActivity() {
 
 
         // Obtencion del arreglo de papelerias
-        referenciaRestaurante
-            .document(nombre)
+        referenciaPapeleria
+            .document(idPapeleria)
             .delete()
             .addOnSuccessListener {
                 mensaje()
@@ -180,8 +180,8 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.mi_borrarPapeleria -> {
                 //Obtener el nombre de la papelería a eliminar
-                val nombre = arregloPapeleria[posicionItemSelecionado].nombrePapeleria
-                eliminarPapeleria(nombre!!)
+                val idPapeleria = arregloPapeleria[posicionItemSelecionado].idPapeleria
+                eliminarPapeleria(idPapeleria!!)
                 return true
             }
             R.id.mi_actualizarPapeleria ->{

@@ -70,7 +70,7 @@ class ActualizarArticulo : AppCompatActivity() {
 
             if (!nombre.isNullOrEmpty() and !marca.isNullOrEmpty() and !descripcion.isNullOrEmpty()
                 and !precio.equals("") and !cantidad.equals("") and !latitud.equals("") and !longitud.equals("")){
-                actualizarProducto(articulo.idArticulo.toString(),papeleria?.nombrePapeleria.toString(),nombre,precio,cantidad,marca,descripcion,latitud.toDouble(),longitud.toDouble())
+                actualizarProducto(articulo.idArticulo.toString(),papeleria?.idPapeleria.toString(),nombre,precio,cantidad,marca,descripcion,latitud.toDouble(),longitud.toDouble())
             }else{
                 mensaje(false)
             }
@@ -78,13 +78,13 @@ class ActualizarArticulo : AppCompatActivity() {
     }
 
 
-    fun actualizarProducto(id : String, papeleriaNombre : String,nombre:String, precio: Double,cantidad: Int, marca : String, descripcion: String, latitud: Double, longitud:Double){
+    fun actualizarProducto(idProducto : String, idPapeleria : String,nombre:String, precio: Double,cantidad: Int, marca : String, descripcion: String, latitud: Double, longitud:Double){
 
-        val referenciaProductos= db.collection("papeleria/${papeleriaNombre}/productos")
+        val referenciaProductos= db.collection("papeleria/${idPapeleria}/productos")
 
         db.runTransaction{actualizacion ->
             actualizacion.update(
-                referenciaProductos.document(id),
+                referenciaProductos.document(idProducto),
                 mapOf(
                     "nombre" to nombre,
                     "precio" to precio,
